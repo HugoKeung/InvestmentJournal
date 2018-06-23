@@ -1,3 +1,17 @@
-<p>
-  buy-position works!
-</p>
+<h2>buy FOrm</h2>
+<form [formGroup]="positionForm" >
+
+  <label for="ticker">Ticker:</label>
+  <input formControlName="ticker" placeholder="ticker symbol"/>
+  <input formControlName="price" placeholder="buy price" />
+  <input formControlName="date" placeholder="purchase date" />
+
+  <input *ngIf="buy" formControlName="sellReason" placeholder="sell reason" />
+  <input *ngIf="!buy" formControlName="buyReason" placeholder="buy reason" />
+  
+  <button *ngIf="buy" [disabled]="positionForm.invalid"type="submit"(click)="saveBuyDetailForm(positionForm.value)">Save</button>
+  <button *ngIf="!buy" type="submit"(click)="saveSellDetailForm(positionForm.value)">Save</button>
+
+
+</form>
+

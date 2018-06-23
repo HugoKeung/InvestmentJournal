@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sell-position',
@@ -7,7 +7,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./sell-position.component.css']
 })
 export class SellPositionComponent implements OnInit {
-  sellDetail : FormGroup;
+  sellDetailForm : FormGroup;
   ticker : FormControl;
   price : FormControl;
   date: FormControl;
@@ -15,8 +15,14 @@ export class SellPositionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.sellDetail = new FormGroup({
-      
+    let ticker = new FormControl('', Validators.required);
+    let price = new FormControl();
+    let date = new FormControl();
+
+    this.sellDetailForm = new FormGroup({
+      ticker: ticker,
+      price: price,
+      date: date
     })
   }
 

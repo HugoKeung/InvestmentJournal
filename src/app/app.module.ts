@@ -10,6 +10,9 @@ import { PositionListViewComponent } from './position-view/position-list-view/po
 import { PositionDetailViewComponent } from './position-view/position-detail-view/position-detail-view.component';
 import { PositionExpandViewComponent } from './position-view/position-expand-view/position-expand-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from '../routes';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

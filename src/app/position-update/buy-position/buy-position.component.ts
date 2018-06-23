@@ -7,18 +7,34 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
   styleUrls: ['./buy-position.component.css']
 })
 export class BuyPositionComponent implements OnInit {
-  buyDeatail: FormGroup;
-  ticker: FormControl;
-  price: FormControl;
-  date: FormControl;
-
+  positionForm: FormGroup;
+  buy: boolean;
 
   constructor() { }
 
   ngOnInit() {
-    this.buyDeatail = new FormGroup({
+    this.buy = true;
+    let ticker = new FormControl('', Validators.required);
+    let price = new FormControl();
+    let date = new FormControl();
+    let buyReason = new FormControl('',Validators.required);
+    let sellReason = new FormControl('',Validators.required);
 
+    this.positionForm = new FormGroup({
+      ticker: ticker,
+      price: price,
+      date: date,
+      buyReason: buyReason,
+      sellReason: sellReason
     })
+
   }
 
+  saveBuyDetailForm(formValues){
+    console.log(formValues);
+
+  }
+  saveSellDetailForm(formValues){
+    console.log('sell');
+  }
 }
