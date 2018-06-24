@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from '../routes';
+import { PositionViewComponent } from './position-view/position-view.component';
+import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { appRoutes } from '../routes';
     PositionListViewComponent,
     PositionDetailViewComponent,
     PositionExpandViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    PositionViewComponent,
+    CollapsibleWellComponent
 
   ],
   imports: [
