@@ -1,3 +1,8 @@
-<p>
-  position-update works!
-</p>
+
+<div class="form-group">
+<button (click)="buy=true">buy</button>
+<button (click)="buy=false">sell</button>
+<app-buy-position *ngIf="buy"></app-buy-position>
+<app-sell-position *ngIf="!buy"></app-sell-position>
+
+</div>

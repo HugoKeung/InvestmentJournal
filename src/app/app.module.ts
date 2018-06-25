@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from '../routes';
 import { PositionViewComponent } from './position-view/position-view.component';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
+import { HistoryComponent } from './history/history.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,13 +31,15 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
     PositionExpandViewComponent,
     NavbarComponent,
     PositionViewComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    HistoryComponent
 
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-position-list-view',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./position-list-view.component.css']
 })
 export class PositionListViewComponent implements OnInit {
-
+  @Input() position;
   constructor() { }
 
   ngOnInit() {

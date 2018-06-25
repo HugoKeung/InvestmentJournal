@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buy-position',
@@ -10,22 +11,22 @@ export class BuyPositionComponent implements OnInit {
   positionForm: FormGroup;
   buy: boolean;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-    this.buy = true;
+    
     let ticker = new FormControl('', Validators.required);
     let price = new FormControl();
     let date = new FormControl();
     let buyReason = new FormControl('',Validators.required);
-    let sellReason = new FormControl('',Validators.required);
+    
 
     this.positionForm = new FormGroup({
       ticker: ticker,
       price: price,
       date: date,
       buyReason: buyReason,
-      sellReason: sellReason
+      
     })
 
   }
@@ -33,8 +34,8 @@ export class BuyPositionComponent implements OnInit {
   saveBuyDetailForm(formValues){
     console.log(formValues);
 
+    this.router.navigate(['home']);
+
   }
-  saveSellDetailForm(formValues){
-    console.log('sell');
-  }
+
 }

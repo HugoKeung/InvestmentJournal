@@ -1,9 +1,9 @@
 <div>
     <h3>Your Current Positions</h3>
     <hr/>
-    <div class="row">
+    <div class="row" *ngFor="let position of currentPositions">
         <div class="col-md-5">
-            <app-position-list-view></app-position-list-view>
+            <app-position-list-view [position]="position"></app-position-list-view>
         </div>
     </div>
 

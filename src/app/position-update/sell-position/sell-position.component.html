@@ -1,3 +1,15 @@
-<p>
-  sell-position works!
-</p>
+<h2>sell FOrm</h2>
+<form [formGroup]="positionForm" (ngSubmit)=saveSellDetailForm(positionForm.value)>
+
+  <label for="ticker">Ticker:</label>
+  <input formControlName="ticker" placeholder="ticker symbol"/>
+  <input formControlName="price" placeholder="sell price" />
+  <input formControlName="date" placeholder="purchase date" />
+  <input formControlName="sellReason" placeholder="sell reason" />
+  
+  <button [disabled]="positionForm.invalid"type="submit">Save</button>
+  
+
+
+</form>
+

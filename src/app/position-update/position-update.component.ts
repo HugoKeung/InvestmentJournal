@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./position-update.component.css']
 })
 export class PositionUpdateComponent implements OnInit {
-
+  buy: boolean=true;
   constructor() { }
 
   ngOnInit() {
+    
   }
+
+
 
 }
