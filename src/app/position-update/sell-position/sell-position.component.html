@@ -1,5 +1,5 @@
 <h2>sell FOrm</h2>
-<form [formGroup]="positionForm" (ngSubmit)=saveSellDetailForm(positionForm.value)>
+<form [formGroup]="positionForm" (ngSubmit)=saveSellDetailForm(positionForm)>
 
   <label for="ticker">Ticker:</label>
   <input formControlName="ticker" placeholder="ticker symbol"/>

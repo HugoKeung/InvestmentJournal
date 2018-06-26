@@ -11,9 +11,9 @@ export class PositionViewComponent implements OnInit {
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
-   //comment out for now to test
-    // this.getPositions();
-    this.currentPositions = [{"name": "name1"}, {"name": "name2"}];
+
+    this.getPositions();
+   
   }
   getPositions(){
     this.dataService.getCurrentPositions().subscribe(

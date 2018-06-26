@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,17 @@ export class DataService {
   constructor(private http:HttpClient) { }
 
   saveBuyForm(formValue){
-    this.http.post('/api/positions/buy', formValue.value, options).subscribe();
+    let body = JSON.stringify(formValue.value);
+    console.log(body);
+    this.http.post('/api/positions/buy', body, options).subscribe();
     console.log('save buy form');
 
   }
 
   saveSellForm(formValue){
-    
-    this.http.post('/api/positions/sell', formValue.value, options).subscribe();
+    let body = JSON.stringify(formValue.value);
+    console.log(body);
+    this.http.post('/api/positions/sell', body, options).subscribe();
     console.log('save sell form');
   }
 
