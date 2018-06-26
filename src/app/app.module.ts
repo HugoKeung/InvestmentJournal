@@ -17,6 +17,7 @@ import { PositionViewComponent } from './position-view/position-view.component';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { HistoryComponent } from './history/history.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     PositionViewComponent,
     CollapsibleWellComponent,
-    HistoryComponent
+    HistoryComponent,
+    PageNotFoundComponent
 
   ],
   imports: [

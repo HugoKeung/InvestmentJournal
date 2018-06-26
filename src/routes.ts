@@ -7,6 +7,7 @@ import { PositionViewComponent } from './app/position-view/position-view.compone
 import { PositionUpdateComponent } from './app/position-update/position-update.component';
 import { BuyPositionComponent } from './app/position-update/buy-position/buy-position.component';
 import { HistoryComponent } from './app/history/history.component';
+import { PageNotFoundComponent } from './app/error/page-not-found/page-not-found.component';
 
 
 export const appRoutes:Routes=[
@@ -14,6 +15,7 @@ export const appRoutes:Routes=[
     {path: 'login', component: LoginComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'},
     {path: 'home', component: PositionViewComponent},
-    {path: 'history', component: HistoryComponent}
+    {path: 'history', component: HistoryComponent},
+    {path: '404', component: PageNotFoundComponent}
 
 ]
