@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
@@ -10,32 +10,34 @@ import { DataService } from '../../services/data.service';
 })
 export class SellPositionComponent implements OnInit {
   positionForm: FormGroup;
-  buy: boolean;
 
-  constructor(private router:Router, private dataService:DataService) { }
+  constructor(private router:Router, private dataService:DataService, private fb: FormBuilder) { }
 
   ngOnInit() {
     
-    let ticker = new FormControl('', Validators.required);
-    let price = new FormControl();
-    let date = new FormControl();
-    let sellReason = new FormControl('',Validators.required);
-    
-
-    this.positionForm = new FormGroup({
-      ticker: ticker,
-      price: price,
-      date: date,
-      sellReason: sellReason,
-      
+    this.positionForm = this.fb.group({
+      ticker:['', [Validators.required, Validators.maxLength(4)]],
+      price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
+      date:['', Validators.required],
+      sellReason:['', Validators.required]
     })
 
   }
 
   saveSellDetailForm(formValues){
-  
-    this.dataService.saveSellForm(formValues);
-    this.router.navigate(['home']);
+
+    let result: any;
+    this.dataService.saveSellForm(formValues).subscribe(
+      data => {
+        this.router.navigate(['home']);
+      },
+      err=>console.log(err.error.text),
+    )
+
+    
+    
+
+
 
   }
 

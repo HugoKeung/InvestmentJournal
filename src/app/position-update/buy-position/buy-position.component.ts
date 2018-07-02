@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {FormGroup,  FormBuilder, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
@@ -12,23 +12,20 @@ export class BuyPositionComponent implements OnInit {
   positionForm: FormGroup;
   buy: boolean;
 
-  constructor(private router:Router, private dataService: DataService) { }
+  constructor(private router:Router, private dataService: DataService, private fb:FormBuilder) { }
 
   ngOnInit() {
-    
-    let ticker = new FormControl('', Validators.required);
-    let price = new FormControl();
-    let date = new FormControl();
-    let buyReason = new FormControl('',Validators.required);
-    
 
-    this.positionForm = new FormGroup({
-      ticker: ticker,
-      price: price,
-      date: date,
-      buyReason: buyReason,
-      
-    })
+
+
+    
+    this.positionForm=this.fb.group({
+      ticker:['', [Validators.required, Validators.maxLength(4)]],
+      price:['', Validators.required],
+      date:['', Validators.required],
+      buyReason:['', Validators.required]
+    });
+
 
   }
 

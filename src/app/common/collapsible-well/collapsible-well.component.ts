@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CollapsibleWellComponent implements OnInit {
 
   constructor() { }
-  visible:boolean=false;
+  visible:boolean=false ;
 
   ngOnInit() {
   }

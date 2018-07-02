@@ -11,17 +11,18 @@ export class DataService {
 
   saveBuyForm(formValue){
     let body = JSON.stringify(formValue.value);
-    console.log(body);
+ //   console.log(body);
     this.http.post('/api/positions/buy', body, options).subscribe();
-    console.log('save buy form');
+ 
 
   }
 
   saveSellForm(formValue){
     let body = JSON.stringify(formValue.value);
-    console.log(body);
-    this.http.post('/api/positions/sell', body, options).subscribe();
-    console.log('save sell form');
+ //   console.log(body);
+
+    return this.http.post('/api/positions/sell', body, options);
+
   }
 
   getCurrentPositions(){
