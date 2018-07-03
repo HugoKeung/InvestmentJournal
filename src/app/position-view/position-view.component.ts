@@ -19,7 +19,7 @@ export class PositionViewComponent implements OnInit {
     this.dataService.getCurrentPositions().subscribe(
       data => { this.currentPositions = data; },
       err => console.error(err),
-      () => console.log('positions loaded')
+      () => {}
 
     );
   }

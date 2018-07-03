@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,  FormBuilder, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { DateValidators } from '../../validators/date.validator';
 
 @Component({
   selector: 'app-buy-position',
@@ -18,11 +19,12 @@ export class BuyPositionComponent implements OnInit {
 
 
 
+
     
     this.positionForm=this.fb.group({
       ticker:['', [Validators.required, Validators.maxLength(4)]],
-      price:['', Validators.required],
-      date:['', Validators.required],
+      price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
+      date:['', [Validators.required, DateValidators.notFuture]],
       buyReason:['', Validators.required]
     });
 
@@ -30,10 +32,14 @@ export class BuyPositionComponent implements OnInit {
   }
 
   saveBuyDetailForm(formValues){
-    console.log(formValues.value);
-    this.dataService.saveBuyForm(formValues);
-    this.router.navigate(['home']);
-
+    console.log(formValues.controls);
+    this.dataService.saveBuyForm(formValues).subscribe(
+      data => {
+        this.router.navigate(['home']);
+      },
+      err => {console.log(err.error.text);},
+      () => {}
+    )
   }
 
 }

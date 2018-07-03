@@ -1,15 +1,38 @@
-<h2>buy FOrm</h2>
-<form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
-
-  <label for="ticker">Ticker:</label>
-  <input formControlName="ticker" placeholder="ticker symbol"/>
-  <input formControlName="price" placeholder="buy price"/>
-  <input formControlName="date" placeholder="purchase date" />
-  <input formControlName="buyReason" placeholder="buy reason" />
-  
-  <button [disabled]="positionForm.invalid"type="submit">Save</button>
-  
 
 
-</form>
+<div class="col-md-12">
+  <h2>buy FOrm</h2>
+  <div class="col-md-6">
+    <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
 
+      <div class="form-group">
+        <label for="ticker">Ticker:</label>
+        <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty">Please enter a valid ticker</em>
+        <input class="form-control" formControlName="ticker" placeholder="ticker symbol"/>
+      </div>  
+
+      <div class="form-group">
+        <label for="price">Purchase price:</label>
+        <em *ngIf="positionForm.controls.price.invalid && positionForm.controls.price.dirty">Please enter a valid price</em>
+        <input class="form-control" formControlName="price" placeholder="buy price" />
+      </div>  
+      
+      <div class="form-group">
+        <label for="date">Purchase date:</label>
+        <em *ngIf="positionForm.controls.date.invalid && positionForm.controls.date.dirty">Please enter a valid date</em>
+        <input class="form-control" formControlName="date" placeholder="purchase date" type="date"/>
+      </div>
+
+      <div class="form-group">
+        <label for="buyReason">Rationale:</label>
+        <em *ngIf="positionForm.controls.buyReason.invalid && positionForm.controls.buyReason.dirty">Required</em>
+        <input class="form-control" formControlName="buyReason" placeholder="buy reason" />
+      </div>
+
+      <button [disabled]="positionForm.invalid"type="submit">Save</button>
+      
+
+
+    </form>
+  </div>
+</div>
