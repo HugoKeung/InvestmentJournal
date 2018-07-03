@@ -11,7 +11,7 @@ export class DataService {
 
   saveBuyForm(formValue){
     let body = JSON.stringify(formValue.value);
- //   console.log(body);
+    console.log(body);
     return this.http.post('/api/positions/buy', body, options);
  
 

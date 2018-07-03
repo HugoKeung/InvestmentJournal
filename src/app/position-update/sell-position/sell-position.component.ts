@@ -26,7 +26,7 @@ export class SellPositionComponent implements OnInit {
   }
 
   saveSellDetailForm(formValues){
-
+   // formValues.patchValue({date: new Date(formValues.controls.date.value)});
     this.dataService.saveSellForm(formValues).subscribe(
       data => {
         this.router.navigate(['home']);

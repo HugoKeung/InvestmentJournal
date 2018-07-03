@@ -32,7 +32,8 @@ export class BuyPositionComponent implements OnInit {
   }
 
   saveBuyDetailForm(formValues){
-    console.log(formValues.controls);
+    //formValues.patchValue({date: new Date(formValues.controls.date.value)});
+
     this.dataService.saveBuyForm(formValues).subscribe(
       data => {
         this.router.navigate(['home']);
