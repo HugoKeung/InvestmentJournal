@@ -12,7 +12,7 @@ import { BuyPosition } from '../model/BuyPosition.model';
 export class PositionViewComponent implements OnInit {
   public currentPositions : BuyPosition[];
   
-  sortBy: string = 'time';
+  currentSort: string = 'time';
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
@@ -29,18 +29,29 @@ export class PositionViewComponent implements OnInit {
 
     );
   }
-  sortByTime(){
-    this.sortBy="time";
-    this.currentPositions.sort(sortByTime);
-  }
-  sortByTicker(){
-    this.sortBy="ticker";
-    this.currentPositions.sort(sortyByTicker);
-  }
 
-  sortByHolding(){
-    this.sortBy="holding";
-    this.currentPositions.sort(sortByHolding);
+  sortBy(sort: string){
+    this.currentSort = sort;
+    
+    switch(sort){
+      case "time":{
+        this.currentPositions.sort(sortByTime);
+        break;
+      }
+      case "ticker":{
+        this.currentPositions.sort(sortyByTicker);
+        break;
+      }
+      case "holding":{
+        this.currentPositions.sort(sortByHolding);
+        break;
+      }
+      default:{
+        //do nothing
+        break;
+      }
+    }
+    
   }
 
 }

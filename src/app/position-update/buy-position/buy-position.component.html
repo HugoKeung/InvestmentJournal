@@ -26,7 +26,7 @@
       <div class="form-group">
         <label for="buyReason">Rationale:</label>
         <em *ngIf="positionForm.controls.buyReason.invalid && positionForm.controls.buyReason.dirty">Required</em>
-        <input class="form-control" formControlName="buyReason" placeholder="buy reason" />
+        <input class="form-control" formControlName="buyReason" placeholder="buy reason"/>
       </div>
 
       <button class="btn-default" [disabled]="positionForm.invalid"type="submit">Save</button>
