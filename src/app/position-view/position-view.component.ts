@@ -21,20 +21,6 @@ export class PositionViewComponent implements OnInit {
    
   }
 
-  ngOnChanges(){
-    if (this.sortBy==='time'){
-      this.currentPositions.sort(sortByTime);
-    }
-    else if (this.sortBy==='holding'){
-      this.currentPositions.sort(sortByHolding);
-    }
-    //if is sort by Ticker
-    else {
-      this.currentPositions.sort(sortyByTicker);
-    }
-  }
-
-  //NEED TO TEST THIS BIT IF IT WORKS
   getPositions(){
     this.dataService.getCurrentPositions().subscribe(
       data => { this.currentPositions = data; },
@@ -43,20 +29,40 @@ export class PositionViewComponent implements OnInit {
 
     );
   }
+  sortByTime(){
+    this.sortBy="time";
+    this.currentPositions.sort(sortByTime);
+  }
+  sortByTicker(){
+    this.sortBy="ticker";
+    this.currentPositions.sort(sortyByTicker);
+  }
 
+  sortByHolding(){
+    this.sortBy="holding";
+    this.currentPositions.sort(sortByHolding);
+  }
 
 }
+
+
+
+//below is sorting function
 function sortByHolding(p1: BuyPosition, p2: BuyPosition){
-  return p1.price -p2.price;
+  return p2.price-p1.price;
 }
 
 function sortByTime(p1: BuyPosition, p2: BuyPosition){
   let p1Date = new Date(p1.date);
   let p2Date = new Date(p2.date);
+
   if (p1Date>p2Date){
     return -1;
   }
-  else return 1;
+  else if (p1Date<p2Date){
+    return 1;
+  }
+  else return 0;
 
 }
 
