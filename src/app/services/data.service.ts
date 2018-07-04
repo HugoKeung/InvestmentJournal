@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
+import { BuyPosition } from '../model/BuyPosition.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class DataService {
   }
 
   getCurrentPositions(){
-    return this.http.get('/api/positions/buy');
+    return this.http.get<BuyPosition[]>('/api/positions/buy');
     
   }
 

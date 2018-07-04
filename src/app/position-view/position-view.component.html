@@ -1,6 +1,12 @@
 <div>
     <h3>Your Current Positions</h3>
     <hr/>
+    <div class="btn-group">
+        <button class="btn-group btn-default" [class.active]="sortBy==='ticker'" (click)="sortBy='ticker'">By Ticker</button>
+        <button class="btn-group btn-default" [class.active]="sortBy==='holding'" (click)="sortBy='holding'">By Holding</button>
+        <button class="btn-group btn-default" [class.active]="sortBy==='time'" (click)="sortBy='time'">By Recent</button>
+    </div>
+
     <div class="row" *ngFor="let position of currentPositions">
         <div class="col-md-12">
             <app-position-list-view [position]="position"></app-position-list-view>
