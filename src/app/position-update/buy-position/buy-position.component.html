@@ -16,6 +16,12 @@
         <em *ngIf="positionForm.controls.price.invalid && positionForm.controls.price.dirty">Please enter a valid price</em>
         <input class="form-control" formControlName="price" placeholder="buy price" />
       </div>  
+
+      <div class="form-group">
+        <label for="shares">Shares</label>
+        <em *ngIf="positionForm.controls.shares.invalid && positionForm.controls.shares.dirty">Required</em>
+        <input class="form-control" formControlName="shares" placeholder="number of shares"/>
+      </div>
       
       <div class="form-group">
         <label for="date">Purchase date:</label>
@@ -24,10 +30,36 @@
       </div>
 
       <div class="form-group">
-        <label for="buyReason">Rationale:</label>
-        <em *ngIf="positionForm.controls.buyReason.invalid && positionForm.controls.buyReason.dirty">Required</em>
-        <input class="form-control" formControlName="buyReason" placeholder="buy reason"/>
+        <label for="story">Story</label>
+        <em *ngIf="positionForm.controls.story.invalid && positionForm.controls.story.dirty">Required</em>
+        <input class="form-control" formControlName="story" placeholder="what is the story of the company"/>
       </div>
+
+      <div class="form-group">
+        <label for="strength">Strength</label>
+        <em *ngIf="positionForm.controls.strength.invalid && positionForm.controls.strength.dirty">Required</em>
+        <input class="form-control" formControlName="strength" placeholder="what is the strength of the company"/>
+      </div>
+
+      <div class="form-group">
+        <label for="weakness">Weakness</label>
+        <em *ngIf="positionForm.controls.weakness.invalid && positionForm.controls.weakness.dirty">Required</em>
+        <input class="form-control" formControlName="weakness" placeholder="what is the weakness of the company"/>
+      </div>
+
+      <div class="form-group">
+        <label for="opportunity">Opportunity</label>
+        <em *ngIf="positionForm.controls.opportunity.invalid && positionForm.controls.opportunity.dirty">Required</em>
+        <input class="form-control" formControlName="opportunity" placeholder="what is the opportunity of the company"/>
+      </div>
+
+      <div class="form-group">
+        <label for="threat">Threat</label>
+        <em *ngIf="positionForm.controls.threat.invalid && positionForm.controls.threat.dirty">Required</em>
+        <input class="form-control" formControlName="threat" placeholder="what is the threat of the company"/>
+      </div>
+
+
 
       <button class="btn-default" [disabled]="positionForm.invalid"type="submit">Save</button>
       

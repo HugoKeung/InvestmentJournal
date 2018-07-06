@@ -11,14 +11,15 @@ import { DateValidators } from '../../validators/date.validator';
 })
 export class SellPositionComponent implements OnInit {
   positionForm: FormGroup;
-
+  tickers: string[];
   constructor(private router:Router, private dataService:DataService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    
+    this.dataService.getCurrentTickers().subscribe(data=>{this.tickers = data;}, err=>{console.log(err)}, ()=>{});
     this.positionForm = this.fb.group({
-      ticker:['', [Validators.required, Validators.maxLength(4)]],
+      ticker:['', Validators.required],
       price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
+      shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       date:['', [Validators.required, DateValidators.notFuture]],
       sellReason:['', Validators.required]
     })

@@ -31,6 +31,10 @@ export class DataService {
     
   }
 
+  getCurrentTickers(){
+    return this.http.get<string[]>('api/positions/buy/tickers');
+  }
+
   getHistory(){
 
   }

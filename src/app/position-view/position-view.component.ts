@@ -60,7 +60,10 @@ export class PositionViewComponent implements OnInit {
 
 //below is sorting function
 function sortByHolding(p1: BuyPosition, p2: BuyPosition){
-  return p2.price-p1.price;
+  let p1Holding = p1.price*p1.shares;
+  let p2Holding = p2.price*p2.shares;
+
+  return p2Holding-p1Holding;
 }
 
 function sortByTime(p1: BuyPosition, p2: BuyPosition){

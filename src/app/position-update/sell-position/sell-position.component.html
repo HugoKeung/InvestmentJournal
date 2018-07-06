@@ -8,13 +8,21 @@
         <div class="form-group">
           <label for="ticker">Ticker:</label>
           <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty">Please enter a valid ticker</em>
-          <input class="form-control" formControlName="ticker" placeholder="ticker symbol"/>
+          <select class="form-control" formControlName="ticker" placeholder="ticker symbol">
+            <option *ngFor="let ticker of tickers" [value]="ticker">{{ticker}}</option>
+            </select>
         </div>  
   
         <div class="form-group">
-          <label for="price">Purchase price:</label>
+          <label for="price">Price sold:</label>
           <em *ngIf="positionForm.controls.price.invalid && positionForm.controls.price.dirty">Please enter a valid price</em>
-          <input class="form-control" formControlName="price" placeholder="buy price" />
+          <input class="form-control" formControlName="price" placeholder="price sold at" />
+        </div>  
+
+        <div class="form-group">
+          <label for="shares">Number of shares:</label>
+          <em *ngIf="positionForm.controls.shares.invalid && positionForm.controls.shares.dirty">Please enter a valid number</em>
+          <input class="form-control" formControlName="shares" placeholder="number of shares" />
         </div>  
         
         <div class="form-group">

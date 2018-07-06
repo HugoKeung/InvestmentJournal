@@ -24,8 +24,15 @@ export class BuyPositionComponent implements OnInit {
     this.positionForm=this.fb.group({
       ticker:['', [Validators.required, Validators.maxLength(4)]],
       price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
+      shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       date:['', [Validators.required, DateValidators.notFuture]],
-      buyReason:['', Validators.required]
+      story:['', Validators.required],
+      strength:['', Validators.required],
+      weakness:['', Validators.required],
+      opportunity:['', Validators.required],
+      threat:['', Validators.required]
+      
+      
     });
 
 
