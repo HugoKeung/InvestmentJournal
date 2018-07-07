@@ -1,3 +1,13 @@
-<p>
-  position-expand-view works!
-</p>
+<h1>Position expand view</h1>
+<div class="container" *ngIf="loaded">
+  <p>{{position.ticker}}</p>
+  <p>{{position.price}}</p>
+  <p>{{position.shares}}</p>
+  <p>{{position.date}}</p>
+  <p>{{position.story}}</p>
+  <p>{{position.strength}}</p>
+  <p>{{position.weakness}}</p>
+  <p>{{position.opportunity}}</p>
+  <p>{{position.threat}}</p>
+</div>
+

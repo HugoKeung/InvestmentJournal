@@ -40,7 +40,7 @@ export class DataService {
   }
 
   getSinglePosition(id: number){
-    this.http.get('/api/positions/buy/' + id).subscribe();
+    return this.http.get<BuyPosition>('/api/positions/buy/' + id);
   }
 
 
