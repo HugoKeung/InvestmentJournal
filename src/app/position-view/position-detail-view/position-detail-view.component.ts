@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-position-detail-view',
@@ -7,9 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PositionDetailViewComponent implements OnInit {
   @Input() position;
-  constructor() { }
+  loaded: boolean = false;
+  companyDetail: any;
+  constructor(private stockService: StockService) { }
 
   ngOnInit() {
+    this.stockService.getCompanyDetail(this.position.ticker).subscribe(
+      data =>{
+        this.companyDetail = data;
+      },
+      err => {console.log(err)},
+      ()=>{this.loaded = true;}
+    )
   }
 
 }

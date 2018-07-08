@@ -1,16 +1,9 @@
+<div *ngIf="loaded">
 <p>
-  {{position.story}}
+  {{companyDetail.description}}
 </p>
 <p>
-  {{position.strength}}
+  {{companyDetail.sector}}
 </p>
-<p>
-  {{position.weakness}}
-</p>
-<p>
-  {{position.opportunity}}
-</p>
-<p>
-  {{position.threat}}
-</p>
+</div>
 <a [routerLink]="['/position', position.id]">Thesis</a>

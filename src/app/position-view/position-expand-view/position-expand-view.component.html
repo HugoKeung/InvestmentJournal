@@ -5,9 +5,31 @@
   <p>{{position.shares}}</p>
   <p>{{position.date}}</p>
   <p>{{position.story}}</p>
-  <p>{{position.strength}}</p>
-  <p>{{position.weakness}}</p>
-  <p>{{position.opportunity}}</p>
-  <p>{{position.threat}}</p>
+
+  <h4>SWOT analysis</h4>
+  <table class="table table-bordered">
+ 
+  <tr>
+    <th></th>
+    <th>Helpful</th>
+    <th>Harmful</th>
+
+  </tr>
+  <tr>
+    <th>Internal Origin</th>
+    <th class="info">{{position.strength}}</th>
+    <th class="warning">{{position.weakness}}</th>
+
+  </tr>
+
+  <tr>
+    <th>External Origin</th>
+    <th class="success">{{position.opportunity}}</th>
+    <th class="danger">{{position.threat}}</th>
+
+  </tr>
+
+
+  </table>
 </div>
 

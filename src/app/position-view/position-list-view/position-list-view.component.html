@@ -1,12 +1,19 @@
+
 <app-collapsible-well>
     <div well-title>
         <div class="col-md-2">
             <a>{{position.ticker}}</a>
         </div>
         <div class="col-md-4">
-            <a>{{position.price| number : '1.2-2'}}</a>
+            <a>{{currentHolding| number : '1.2-2'}}</a>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-1">
+            {{currentPrice| number : '1.2-2'}}
+        </div>
+        <div class="col-md-2">
+            profit: {{profitToDate| number : '1.2-2'}}        
+        </div>
+        <div class="col-md-3 text-right">
             <a>{{position.date}}</a>
         </div>
  

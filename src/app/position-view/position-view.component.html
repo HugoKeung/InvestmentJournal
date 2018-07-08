@@ -6,7 +6,24 @@
         <button class="btn-group btn-default" [class.active]="currentSort==='holding'" (click)="sortBy('holding')">By Holding</button>
         <button class="btn-group btn-default" [class.active]="currentSort==='time'" (click)="sortBy('time')">By Recent</button>
     </div>
-
+    <div>
+            <div class="col-md-2">
+                <a>ticker</a>
+            </div>
+            <div class="col-md-4">
+                <a>Total Holding</a>
+            </div>
+            <div class="col-md-1">
+                Current Price
+            </div>
+            <div class="col-md-2">
+                Price difference to date      
+            </div>
+            <div class="col-md-3 text-right">
+                Purchase date
+            </div>
+     
+        </div>
     <div class="row" *ngFor="let position of currentPositions">
         <div class="col-md-12">
             <app-position-list-view [position]="position"></app-position-list-view>
