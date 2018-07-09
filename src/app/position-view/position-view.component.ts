@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { BuyPosition } from '../model/BuyPosition.model';
+import { CurrentPosition } from '../model/CurrentPosition.model';
+import { StockService } from '../services/stock.service';
+
 
 
 
@@ -10,10 +13,10 @@ import { BuyPosition } from '../model/BuyPosition.model';
   styleUrls: ['./position-view.component.css']
 })
 export class PositionViewComponent implements OnInit {
-  public currentPositions : BuyPosition[];
+  public currentPositions : CurrentPosition[];
   
   currentSort: string = 'time';
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private stockService: StockService) { }
 
   ngOnInit() {
 
@@ -54,19 +57,24 @@ export class PositionViewComponent implements OnInit {
     
   }
 
+
 }
 
 
-
-//below is sorting function
-function sortByHolding(p1: BuyPosition, p2: BuyPosition){
-  let p1Holding = p1.price*p1.shares;
-  let p2Holding = p2.price*p2.shares;
+  //below is sorting function
+  function sortByHolding(p1: CurrentPosition, p2: CurrentPosition){
+    // let p1Price = stockService.getPrice(p1.ticker);
+    // let p2Price = stockService.getPrice(p2.ticker);
+    let p1Price = 10;
+    let p2Price = 10;
+  //!!change p1.price to currentPrice
+  let p1Holding = p1Price*p1.shares;
+  let p2Holding = p2Price*p2.shares;
 
   return p2Holding-p1Holding;
 }
 
-function sortByTime(p1: BuyPosition, p2: BuyPosition){
+function sortByTime(p1: CurrentPosition, p2: CurrentPosition){
   let p1Date = new Date(p1.date);
   let p2Date = new Date(p2.date);
 
@@ -80,7 +88,7 @@ function sortByTime(p1: BuyPosition, p2: BuyPosition){
 
 }
 
-function sortyByTicker(p1: BuyPosition, p2: BuyPosition){
+function sortyByTicker(p1: CurrentPosition, p2: CurrentPosition){
   if (p1.ticker>p2.ticker){
     return 1;
   }

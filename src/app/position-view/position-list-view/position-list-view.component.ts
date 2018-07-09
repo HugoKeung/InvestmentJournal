@@ -19,8 +19,11 @@ export class PositionListViewComponent implements OnInit {
       data=>{this.currentPrice = data},
       err=> {console.log(err)},
       ()=>{    
+        
         this.currentHolding = this.position.shares * this.currentPrice;
-        this.profitToDate = this.currentHolding - (this.position.shares * this.position.price);
+        this.profitToDate = this.currentHolding + this.position.sellPrice - this.position.buyPrice;
+     
+        console.log(this.position.sellPrice)
       }
     )
 

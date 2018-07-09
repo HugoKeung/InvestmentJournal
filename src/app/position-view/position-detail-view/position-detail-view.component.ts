@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StockService } from '../../services/stock.service';
+import { DataService } from '../../services/data.service';
+import { BuyPosition } from '../../model/BuyPosition.model';
 
 @Component({
   selector: 'app-position-detail-view',
@@ -9,8 +11,9 @@ import { StockService } from '../../services/stock.service';
 export class PositionDetailViewComponent implements OnInit {
   @Input() position;
   loaded: boolean = false;
+  buyPositions: BuyPosition[];
   companyDetail: any;
-  constructor(private stockService: StockService) { }
+  constructor(private stockService: StockService, private dataService: DataService) { }
 
   ngOnInit() {
     this.stockService.getCompanyDetail(this.position.ticker).subscribe(
@@ -19,6 +22,13 @@ export class PositionDetailViewComponent implements OnInit {
       },
       err => {console.log(err)},
       ()=>{this.loaded = true;}
+    )
+
+    //TODO lazy loading, will do for now
+    this.dataService.getTickerPosition(this.position.ticker).subscribe(
+      data=>{ this.buyPositions = data;},
+      err=> {console.log(err);},
+      ()=>{}
     )
   }
 

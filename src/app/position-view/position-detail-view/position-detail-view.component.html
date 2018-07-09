@@ -6,4 +6,7 @@
   {{companyDetail.sector}}
 </p>
 </div>
+
+<div *ngFor="let position of buyPositions">
 <a [routerLink]="['/position', position.id]">Thesis</a>
+</div>
