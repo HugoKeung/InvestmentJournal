@@ -18,4 +18,7 @@ export class StockService {
     return this.http.get('https://api.iextrading.com/1.0/stock/' + ticker + '/company');
   }
 
+  getAllSupportedTicker(){
+    return this.http.get('https://api.iextrading.com/1.0/ref-data/symbols?filter=symbol,name');
+  }
 }

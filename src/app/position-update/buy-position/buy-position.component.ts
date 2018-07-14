@@ -3,6 +3,7 @@ import {FormGroup,  FormBuilder, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { DateValidators } from '../../validators/date.validator';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-buy-position',
@@ -13,12 +14,14 @@ export class BuyPositionComponent implements OnInit {
   positionForm: FormGroup;
   buy: boolean;
 
-  constructor(private router:Router, private dataService: DataService, private fb:FormBuilder) { }
+
+  constructor(private router:Router, private dataService: DataService, private fb:FormBuilder, private stockService: StockService) { }
 
   ngOnInit() {
 
 
-
+    //put all ticker locally 
+    //this.stockService.getAllSupportedTicker()
 
     
     this.positionForm=this.fb.group({
