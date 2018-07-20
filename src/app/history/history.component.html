@@ -1,17 +1,13 @@
-<p>
-Show Buy only
-</p>
-<p>
-  Show Sell only
-</p>
-<p>
-  Sort by Position size
-</p>
-<p>
-  Sort by Date
-</p>
-<div *ngFor="let record of history">
-  <p>record.ticker</p>
-  <p>record.price</p>
-  <p>record.flag</p>
+
+<div class="btn-group">
+      <button class="btn-group btn-default" [class.active]="currentSort==='ticker'" (click)="sortBy('ticker')">By Ticker</button>
+      <button class="btn-group btn-default" [class.active]="currentSort==='transaction'" (click)="sortBy('transaction')">By Transaction</button>
+      <button class="btn-group btn-default" [class.active]="currentSort==='time'" (click)="sortBy('time')">By Recent</button>
+      <div class="col-md-5"></div>
+      <button class="btn-group btn-default pull-right" [class.active]="currentFilter==='sell'" (click)="filterBy('sell')">Sell only</button>
+      <button class="btn-group btn-default pull-right" [class.active]="currentFilter==='buy'"(click)="filterBy('buy')">Buy only</button>
+      <button class="btn-group btn-default pull-right" [class.active]="currentFilter==='all'"(click)="filterBy('all')">Show all</button>
+</div>
+<div *ngFor="let record of showList">
+  <p>{{record.ticker}} date: {{record.date}} flag: {{record.flag}}</p>
 </div>

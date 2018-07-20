@@ -4,7 +4,7 @@ export interface SimplePosition{
     date: string;
     shares: number;
     price: number;
-    flag: boolean;
+    flag: string;
 
 
 }
