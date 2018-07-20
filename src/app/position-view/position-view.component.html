@@ -2,9 +2,9 @@
     <h3>Your Current Positions</h3>
     <hr/>
     <div class="btn-group">
-        <button class="btn-group btn-default" [class.active]="currentSort==='ticker'" (click)="sortBy('ticker')">By Ticker</button>
-        <button class="btn-group btn-default" [class.active]="currentSort==='holding'" (click)="sortBy('holding')">By Holding</button>
-        <button class="btn-group btn-default" [class.active]="currentSort==='time'" (click)="sortBy('time')">By Recent</button>
+        <button class="btn-group btn-default" [class.active]="currentSort==='ticker'" (click)="currentSort=sortService.sortBy('ticker', currentPositions)">By Ticker</button>
+        <button class="btn-group btn-default" [class.active]="currentSort==='holding'" (click)="currentSort=sortService.sortBy('holding', currentPositions)">By Holding</button>
+        <button class="btn-group btn-default" [class.active]="currentSort==='time'" (click)="currentSort=sortService.sortBy('time', currentPositions)">By Recent</button>
     </div>
     <div>
             <div class="col-md-2">

@@ -1,3 +1,17 @@
 <p>
-  history works!
+Show Buy only
 </p>
+<p>
+  Show Sell only
+</p>
+<p>
+  Sort by Position size
+</p>
+<p>
+  Sort by Date
+</p>
+<div *ngFor="let record of history">
+  <p>record.ticker</p>
+  <p>record.price</p>
+  <p>record.flag</p>
+</div>

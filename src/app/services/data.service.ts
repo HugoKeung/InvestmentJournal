@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { BuyPosition } from '../model/BuyPosition.model';
 import { CurrentPosition } from '../model/CurrentPosition.model';
+import { SimplePosition } from '../model/SimplePosition.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +31,17 @@ export class DataService {
   }
 
   getCurrentPositions(){
-    return this.http.get<CurrentPosition[]>('/api/positions/buy/current');
+    return this.http.get<CurrentPosition[]>('/api/positions/current');
     
   }
 
   getCurrentTickers(){
-    return this.http.get<string[]>('api/positions/buy/tickers');
+    return this.http.get<string[]>('api/positions/current/tickers');
   }
 
-  getHistory(){
+  getAll(){
+
+    return this.http.get<SimplePosition[]>('api/positions/all');
 
   }
 
@@ -47,8 +50,9 @@ export class DataService {
   }
 
   getTickerPosition(ticker: string){
-    return this.http.get<BuyPosition[]>('/api/positions/buy/ticker/' + ticker);
+    return this.http.get<BuyPosition[]>('/api/positions/current/ticker/' + ticker);
   }
+
 
 
 
