@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { BuyPosition } from '../model/BuyPosition.model';
 import { CurrentPosition } from '../model/CurrentPosition.model';
 import { SimplePosition } from '../model/SimplePosition.model';
+import { SellPosition } from '../model/SellPosition.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +46,12 @@ export class DataService {
 
   }
 
-  getSinglePosition(id: number){
+  getSingleBuyPosition(id: number){
     return this.http.get<BuyPosition>('/api/positions/buy/' + id);
+  }
+
+  getSingleSellPosition(id: number){
+    return this.http.get<SellPosition>('/api/positions/sell/' + id);
   }
 
   getTickerPosition(ticker: string){

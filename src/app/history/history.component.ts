@@ -24,9 +24,11 @@ export class HistoryComponent implements OnInit {
       err => {console.error(err);},
       ()=>{this.loaded = true;
         this.showList = this.history;
-        this.currentSort = this.sortService.sortBy('time', this.history);}
+        this.currentSort = this.sortService.sortBy('time', this.history);
+      }
+  
     );
-
+    
   }
 
   filterBy(filter: string){

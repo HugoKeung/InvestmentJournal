@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { StockService } from './stock.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SortService {
-
-  constructor() { }
+  test: number = 1;
+  constructor(private stockService: StockService) { }
 
   filterBy(flag: string, array: Array<any>){
     let newList : any[] = [];
@@ -35,6 +36,7 @@ export class SortService {
       }
       //Holding not working yet, to be implemented
       case "holding":{
+
         array.sort(sortByHolding);
         return 'holding';
 
@@ -64,17 +66,24 @@ export class SortService {
 
     
   }
-      //below is sorting function
+
+  //to be implemented
   function sortByHolding(p1: any, p2: any){
-      // let p1Price = stockService.getPrice(p1.ticker);
-      // let p2Price = stockService.getPrice(p2.ticker);
-      let p1Price = 10;
-      let p2Price = 10;
-    //!!change p1.price to currentPrice
+ 
+    let p1Price : number = 10;
+    let p2Price : number = 10;
+    
+
     let p1Holding = p1Price*p1.shares;
     let p2Holding = p2Price*p2.shares;
 
-    return p2Holding-p1Holding;
+    if (p2Holding>p1Holding){
+      return 1;
+    }
+    else if (p2Holding<p1Holding){
+      return -1;
+    }
+    else return 0;
   }
 
   function sortByTime(p1: any, p2: any){
@@ -95,7 +104,10 @@ export class SortService {
     if (p1.ticker>p2.ticker){
       return 1;
     }
-    else {return -1;}
+    else if (p1.ticker<p2.ticker){
+      return -1;
+    }
+    else return 0;
   }
 
 }

@@ -4,19 +4,19 @@ import { DataService } from '../../services/data.service';
 import { BuyPosition } from '../../model/BuyPosition.model';
 
 @Component({
-  selector: 'app-position-expand-view',
-  templateUrl: './position-expand-view.component.html',
-  styleUrls: ['./position-expand-view.component.css']
+  selector: 'app-buy-position-expand-view',
+  templateUrl: './buy-position-expand-view.component.html',
+  styleUrls: ['./buy-position-expand-view.component.css']
 })
-export class PositionExpandViewComponent implements OnInit {
+export class BuyPositionExpandViewComponent implements OnInit {
   position : BuyPosition;
   loaded: boolean;
   constructor(private route:ActivatedRoute, private dataService: DataService) { }
 
   ngOnInit() {
-    console.log(this.loaded)
+    
     let id = +this.route.snapshot.paramMap.get('id');
-    this.dataService.getSinglePosition(id).subscribe(
+    this.dataService.getSingleBuyPosition(id).subscribe(
       data=>{this.position = data;},
       err=>{console.log(err)},
       ()=>{this.loaded = true;}

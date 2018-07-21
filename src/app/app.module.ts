@@ -8,7 +8,7 @@ import { PositionUpdateComponent } from './position-update//position-update.comp
 import { LoginComponent } from './login/login.component';
 import { PositionListViewComponent } from './position-view/position-list-view/position-list-view.component';
 import { PositionDetailViewComponent } from './position-view/position-detail-view/position-detail-view.component';
-import { PositionExpandViewComponent } from './position-view/position-expand-view/position-expand-view.component';
+import { BuyPositionExpandViewComponent } from './position-view/position-expand-view/buy-position-expand-view.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,9 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
 import { HistoryComponent } from './history/history.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
+import { StockService } from './services/stock.service';
+import { SellPositionExpandViewComponent } from './position-view/position-expand-view/sell-position-expand-view/sell-position-expand-view.component';
+import { HistoryViewComponent } from './position-view/history-view/history-view.component';
 
 
 @NgModule({
@@ -29,12 +32,14 @@ import { PageNotFoundComponent } from './error/page-not-found/page-not-found.com
     LoginComponent,
     PositionListViewComponent,
     PositionDetailViewComponent,
-    PositionExpandViewComponent,
+    BuyPositionExpandViewComponent,
     NavbarComponent,
     PositionViewComponent,
     CollapsibleWellComponent,
     HistoryComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SellPositionExpandViewComponent,
+    HistoryViewComponent
 
   ],
   imports: [

@@ -1,11 +1,8 @@
-export interface SimplePosition{
-    
+export interface SellPosition{
     id: number;
     ticker: string;
     date: string;
     shares: number;
     price: number;
-    flag: string;
-
-
+    sellReason: string;
 }

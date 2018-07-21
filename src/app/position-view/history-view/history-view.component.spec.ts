@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PositionExpandViewComponent } from './position-expand-view.component';
+import { HistoryViewComponent } from './history-view.component';
 
-describe('PositionExpandViewComponent', () => {
-  let component: PositionExpandViewComponent;
-  let fixture: ComponentFixture<PositionExpandViewComponent>;
+describe('HistoryViewComponent', () => {
+  let component: HistoryViewComponent;
+  let fixture: ComponentFixture<HistoryViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PositionExpandViewComponent ]
+      declarations: [ HistoryViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PositionExpandViewComponent);
+    fixture = TestBed.createComponent(HistoryViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

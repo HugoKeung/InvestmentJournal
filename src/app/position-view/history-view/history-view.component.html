@@ -1,0 +1,20 @@
+<div class="form-control">
+  <div class="col-md-2">
+    {{position.ticker}}
+  </div>
+  <div class="col-md-1">
+    {{position.price}}
+  </div>
+  <div class="col-md-1">
+    {{position.shares}}
+  </div>
+  <div class="col-md-4">
+    {{position.date}}
+  </div>
+  <div class="col-md-1">
+    {{position.flag| uppercase}}
+  </div>
+  <div>
+    <a [routerLink]="['/position/' + flag, id]">Detail</a>
+  </div>
+</div>

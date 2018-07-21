@@ -8,6 +8,7 @@
       <button class="btn-group btn-default pull-right" [class.active]="currentFilter==='buy'"(click)="filterBy('buy')">Buy only</button>
       <button class="btn-group btn-default pull-right" [class.active]="currentFilter==='all'"(click)="filterBy('all')">Show all</button>
 </div>
-<div *ngFor="let record of showList">
-  <p>{{record.ticker}} date: {{record.date}} flag: {{record.flag}}</p>
+<div *ngFor="let position of showList">
+  <app-history-view [position]="position"></app-history-view>
+  
 </div>
