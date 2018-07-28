@@ -2,13 +2,27 @@
 
 <div class="col-md-12">
   <h2>buy FOrm</h2>
+  <div *ngIf="loaded">
   <div class="col-md-6">
     <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
 
       <div class="form-group">
         <label for="ticker">Ticker:</label>
-        <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty">Please enter a valid ticker</em>
-        <input class="form-control" formControlName="ticker" placeholder="ticker symbol"/>
+        <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty ">Please enter a valid ticker</em>
+        <!--------TODO force user to enter upper ---->
+        <mat-form-field>
+            <input type="text" matInput formControlName="ticker" placeholder="Ticker Symbol" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option [value]="ticker.symbol" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
+                <div class="form-control">{{ticker.symbol}} : {{ticker.name}}</div>
+                
+                
+              </mat-option>
+            </mat-autocomplete>
+    
+        </mat-form-field>
+
+
       </div>  
 
       <div class="form-group">
@@ -67,4 +81,6 @@
 
     </form>
   </div>
+  </div>
+  
 </div>

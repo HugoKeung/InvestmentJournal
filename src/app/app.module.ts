@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module'
 import { AppComponent } from './app.component';
 import { BuyPositionComponent } from './position-update/buy-position/buy-position.component';
 import { SellPositionComponent } from './position-update/sell-position/sell-position.component';
@@ -46,7 +48,10 @@ import { HistoryViewComponent } from './position-view/history-view/history-view.
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
-import { DateValidators } from '../../validators/date.validator';
+import { DateValidator } from '../../validators/date.validator';
 
 @Component({
   selector: 'app-sell-position',
@@ -20,7 +20,7 @@ export class SellPositionComponent implements OnInit {
       ticker:['', Validators.required],
       price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
       shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      date:['', [Validators.required, DateValidators.notFuture]],
+      date:['', [Validators.required, DateValidator.notFuture]],
       sellReason:['', Validators.required]
     })
 

@@ -1,7 +1,7 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
 
-export class DateValidators {
+export class DateValidator {
     static notFuture(c: AbstractControl): {[key: string]:boolean} | null {
         let inputDate = new Date(c.value).getTime();
         let today = new Date().getTime();
