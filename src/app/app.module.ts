@@ -23,6 +23,7 @@ import { PageNotFoundComponent } from './error/page-not-found/page-not-found.com
 import { StockService } from './services/stock.service';
 import { SellPositionExpandViewComponent } from './position-view/position-expand-view/sell-position-expand-view/sell-position-expand-view.component';
 import { HistoryViewComponent } from './position-view/history-view/history-view.component';
+import { ChartComponent } from './chart/chart.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { HistoryViewComponent } from './position-view/history-view/history-view.
     HistoryComponent,
     PageNotFoundComponent,
     SellPositionExpandViewComponent,
-    HistoryViewComponent
+    HistoryViewComponent,
+    ChartComponent
 
   ],
   imports: [

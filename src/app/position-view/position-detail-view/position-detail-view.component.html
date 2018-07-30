@@ -6,7 +6,8 @@
   {{companyDetail.sector}}
 </p>
 </div>
-
+<app-chart [ticker] = position.ticker></app-chart>
 <div *ngFor="let position of buyPositions">
+
 <a [routerLink]="['/position/buy', position.id]">Thesis</a>
 </div>
