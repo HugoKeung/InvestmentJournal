@@ -10,7 +10,7 @@ export class PositionUpdateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 

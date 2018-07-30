@@ -1,3 +1,4 @@
+import 'chart.js';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,6 +25,7 @@ import { StockService } from './services/stock.service';
 import { SellPositionExpandViewComponent } from './position-view/position-expand-view/sell-position-expand-view/sell-position-expand-view.component';
 import { HistoryViewComponent } from './position-view/history-view/history-view.component';
 import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -52,8 +54,8 @@ import { ChartComponent } from './chart/chart.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule 
-    
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

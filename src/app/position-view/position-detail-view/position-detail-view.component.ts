@@ -16,6 +16,7 @@ export class PositionDetailViewComponent implements OnInit {
   constructor(private stockService: StockService, private dataService: DataService) { }
 
   ngOnInit() {
+  
     this.stockService.getCompanyDetail(this.position.ticker).subscribe(
       data =>{
         this.companyDetail = data;
