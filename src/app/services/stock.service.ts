@@ -22,11 +22,20 @@ export class StockService {
     return this.http.get('https://api.iextrading.com/1.0/ref-data/symbols?filter=symbol,name');
   }
 
-  getDatChart(ticker: string){
-
-  }
 
   getChart(ticker: string, duration: string){
-    return this.http.get('https://api.iextrading.com/1.0/stock' + ticker + '/chart/' + duration);
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + ticker + '/chart/' + duration);
+  }
+
+  getFinancial(ticker: string){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + ticker + '/financials');
+  }
+
+  getEarnings(ticker: string){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + ticker + '/earnings');
+  }
+
+  getQuote(ticker: string){
+    return this.http.get('https://api.iextrading.com/1.0/stock/' + ticker + '/quote');
   }
 }
