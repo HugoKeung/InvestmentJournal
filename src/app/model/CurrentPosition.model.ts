@@ -4,4 +4,5 @@ export interface CurrentPosition{
     date: string;
     buyPrice: number;
     sellPrice: number;
+    currentPrice: number;
 }

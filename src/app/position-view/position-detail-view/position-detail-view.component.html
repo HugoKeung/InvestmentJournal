@@ -6,7 +6,7 @@
   {{companyDetail.sector}}
 </p>
 </div>
-<app-chart class="md-col-8"[ticker] = position.ticker></app-chart>
+<app-chart class="md-col-8" [ticker] = position.ticker></app-chart>
 
 <div *ngIf="financialLoaded" class="md-col-2">
   <div>Net Income:  {{financials.netIncome}}</div>
@@ -17,6 +17,7 @@
 <div *ngIf="quoteLoaded" class="md-col-2">
   <div>P/E Ratio:  {{quote.peRatio}}</div>
 </div>
+
 <div *ngFor="let position of buyPositions">
   <a [routerLink]="['/position/buy', position.id]">Thesis</a>
 </div>

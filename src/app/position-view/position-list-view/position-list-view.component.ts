@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { StockService } from '../../services/stock.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { StockService } from '../../services/stock.service';
   templateUrl: './position-list-view.component.html',
   styleUrls: ['./position-list-view.component.css']
 })
-export class PositionListViewComponent implements OnInit {
+export class PositionListViewComponent implements OnInit, OnChanges {
   @Input() position;
   currentPrice: number;
   currentHolding: number;
@@ -15,17 +15,13 @@ export class PositionListViewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.stockService.getPrice(this.position.ticker).subscribe(
-      data=>{this.currentPrice = data},
-      err=> {console.log(err)},
-      ()=>{    
-        
-        this.currentHolding = this.position.shares * this.currentPrice;
-        this.profitToDate = this.currentHolding + this.position.sellPrice - this.position.buyPrice;
-     
-      }
-    )
 
+  }
+
+  ngOnChanges(){
+    this.currentHolding = this.position.shares * this.position.currentPrice;
+    this.profitToDate = this.currentHolding + this.position.sellPrice - this.position.buyPrice;
+    
   }
 
 }

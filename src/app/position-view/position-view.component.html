@@ -23,11 +23,13 @@
                 Purchase date
             </div>
      
-        </div>
+    </div>
+    <div *ngIf="positionLoaded" >
     <div class="row" *ngFor="let position of currentPositions">
         <div class="col-md-12">
             <app-position-list-view [position]="position"></app-position-list-view>
         </div>
+    </div>
     </div>
 
 </div>

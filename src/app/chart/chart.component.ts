@@ -3,6 +3,8 @@ import { StockService } from '../services/stock.service';
 import { ChartData } from '../model/ChartData.model';
 import { BaseChartDirective } from 'ng2-charts';
 
+//TODO scrolling behaviour for chart when change time
+
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -10,6 +12,7 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() ticker;
+  time: string = '1m';
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 //see https://valor-software.com/ng2-charts/ for detail
@@ -55,27 +58,29 @@ export class ChartComponent implements OnInit, AfterViewInit {
     console.log(e);
   }
   constructor(private stockService: StockService, private el: ElementRef) { }
-
+//TODO add latest price to 1m data.
   ngOnInit() {
-    this.stockService.getChart(this.ticker, '3m').subscribe(
-        (data: ChartData[])=>{
-           
-            let tempPrice = data.map(a => a.open);
-            this.openPrice[0].data = tempPrice;
-            
-            this.date = data.map(a=> a.date);
-        },
-        err=>{console.error(err)},
-        ()=>{
-
-          
-        }
-    )
+    this.getChart(this.time);
 }
   ngAfterViewInit(){
  
 
   }
-
+   getChart(time: string) : string{
+    this.stockService.getChart(this.ticker, time).subscribe(
+      (data: ChartData[])=>{
+         
+          let tempPrice = data.map(a => a.open);
+          this.openPrice[0].data = tempPrice;
+          
+          this.date = data.map(a=> a.date);
+      },
+      err=>{console.error(err)},
+      ()=>{
+        
+      }
+  );
+  return time;
+  }
 
 }
