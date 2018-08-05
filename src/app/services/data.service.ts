@@ -15,18 +15,14 @@ export class DataService {
 
   saveBuyForm(formValue){
     let body = JSON.stringify(formValue.value);
-    console.log(body);
     return this.http.post('/api/positions/buy', body, options);
  
-
   }
 
 
 
   saveSellForm(formValue){
     let body = JSON.stringify(formValue.value);
- //   console.log(body);
-
     return this.http.post('/api/positions/sell', body, options);
 
   }
@@ -57,9 +53,6 @@ export class DataService {
   getTickerPosition(ticker: string){
     return this.http.get<BuyPosition[]>('/api/positions/current/ticker/' + ticker);
   }
-
-
-
 
 }
 

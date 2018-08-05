@@ -13,12 +13,15 @@ import { SellPositionExpandViewComponent } from './app/position-view/position-ex
 
 export const appRoutes:Routes=[
     {path: 'edit', component: PositionUpdateComponent},
-    {path: 'login', component: LoginComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'},
+    {path: 'login', component: LoginComponent},
+
     {path: 'home', component: PositionViewComponent},
     {path: 'history', component: HistoryComponent},
-    {path: '404', component: PageNotFoundComponent},
+    
     {path: 'position/buy/:id', component: BuyPositionExpandViewComponent },
-    {path: 'position/sell/:id', component: SellPositionExpandViewComponent}
+    {path: 'position/sell/:id', component: SellPositionExpandViewComponent},
+    {path: '404', component: PageNotFoundComponent},
+    {path: '**', redirectTo:'/404'}
 
 ]

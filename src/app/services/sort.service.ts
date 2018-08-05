@@ -33,7 +33,7 @@ export class SortService {
         return 'ticker';
 
       }
-      //Holding not working yet, to be implemented
+   
       case "holding":{
 
         array.sort(sortByHolding);
