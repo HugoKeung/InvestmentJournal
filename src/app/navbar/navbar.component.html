@@ -18,7 +18,7 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+            <a (click)="login()">Login</a>
           </li>
           <li>
             <a (click) = "logout()">Logout</a>

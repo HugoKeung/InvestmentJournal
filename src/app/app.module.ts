@@ -26,6 +26,7 @@ import { SellPositionExpandViewComponent } from './position-view/position-expand
 import { HistoryViewComponent } from './position-view/history-view/history-view.component';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -58,7 +59,9 @@ import { ChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
