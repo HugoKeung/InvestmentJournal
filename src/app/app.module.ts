@@ -53,7 +53,7 @@ import { ChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-
+    FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
     ChartsModule

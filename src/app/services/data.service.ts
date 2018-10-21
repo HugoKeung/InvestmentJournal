@@ -11,7 +11,9 @@ import { SellPosition } from '../model/SellPosition.model';
 })
 export class DataService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+ 
+  }
 
   saveBuyForm(formValue){
     let body = JSON.stringify(formValue.value);

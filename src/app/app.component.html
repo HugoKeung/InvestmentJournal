@@ -1,2 +1,8 @@
 <app-navbar></app-navbar>
+<div [hidden] ="this.loginService.authenticated">
 <router-outlet></router-outlet>
+</div>
+
+<div [hidden] ="!this.loginService.authenticated">
+Logged in test
+</div>

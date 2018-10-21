@@ -21,7 +21,7 @@ export class PositionViewComponent implements OnInit {
   constructor(private dataService:DataService, private stockService: StockService, private sortService: SortService) { }
 
   ngOnInit() {
-   
+  
     this.getPositions();
 
    
