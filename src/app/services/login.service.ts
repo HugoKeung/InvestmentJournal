@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  authenticated = false;
+ // authenticated = false;
   constructor(private http: HttpClient, private router: Router) { }
 
   //send logout request to backend, then direct to login page

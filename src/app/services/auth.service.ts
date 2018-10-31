@@ -1,66 +1,52 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UserManager, User, WebStorageStateStore } from 'oidc-client';
-
-@Injectable({
-  providedIn: 'root'
-})
+import { Router } from '@angular/router';
+import 'rxjs/add/operator/filter';
+import * as auth0 from 'auth0-js';
+@Injectable()
 export class AuthService {
-  // authenticated = false;
-  private _userManager: UserManager;
-  private _user: User;
-  constructor(private http: HttpClient) { 
-    var config = {
-      //authority has to locate auth server, should be /uaa/oauth/authorize
-      authority: 'http://localhost:9999/',
-      client_id: 'acme',
-      redirect_uri: 'http://localhost:4200',
-      scope: 'openid projects-api profile',
-      response_type: 'id_token token',
-      post_logout_redirect_uri: 'http://localhost:4200?postLogout=true',
-      userStore: new WebStorageStateStore({store: window.localStorage})
-    };
-
-    this._userManager = new UserManager(config);
-    this._userManager.getUser().then(user => {
-      if (user && !user.expired) {
-        this._user = user;
+  auth0 = new auth0.WebAuth({
+    clientID: 'JiVzgYI7tk5nFwGFfZJWSxmPViaBRAU6',
+    domain: 'hugokeung.eu.auth0.com',
+    responseType: 'token id_token',
+    audience: 'http://localhost:8080',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid view:registration view:registrations'
+  });
+  constructor(public router: Router) {}
+  public login(): void {
+    this.auth0.authorize();
+  }
+  public handleAuthentication(): void {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
+        this.setSession(authResult);
+        this.router.navigate(['/admin']);
+      } else if (err) {
+        this.router.navigate(['/admin']);
+        console.log(err);
       }
     });
   }
-
-  login(): Promise<any> {
-    return this._userManager.signinRedirect();
+  private setSession(authResult): void {
+    // Set the time that the access token will expire at
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
   }
-
-  logout(): Promise<any>{
-    return this._userManager.signoutRedirect();
+  public logout(): void {
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    // Go back to the home route
+    this.router.navigate(['/']);
   }
-
-  isLoggedIn(): boolean{
-    return this._user && this._user.access_token && !this._user.expired;
+  public isAuthenticated(): boolean {
+    // Check whether the current time is past the
+    // access token's expiry time
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    return new Date().getTime() < expiresAt;
   }
-
-  getAccessToken(): string {
-    return this._user ? this._user.access_token : '';
-  }
-  signoutRedirectCallback(): Promise<any>{
-    return this._userManager.signoutRedirectCallback();
-  }
-
-  
-  // authenticate(){
-  //   return this.http.get('user');
-  // }
-
-  // getAuthStatus(){
-  //   return this.authenticated;
-  // }
-
-  // logout(){
-  //   this.http.post('logout',{}).finally(()=>{
-  //     this.authenticated = false;
-  //   }).subscribe();
-  // }
-
 }

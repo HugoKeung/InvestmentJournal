@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '../../../node_modules/@angular/router';
 
@@ -14,13 +13,13 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit() {
-    if (window.location.href.indexOf('?postLogout=true')> 0){
-      this.authService.signoutRedirectCallback().then(()=>{
-        let url: string = this._router.url.substring(0, this._router.url.indexOf('?'));
-        this._router.navigateByUrl(url);
+    // if (window.location.href.indexOf('?postLogout=true')> 0){
+    //   this.authService.signoutRedirectCallback().then(()=>{
+    //     let url: string = this._router.url.substring(0, this._router.url.indexOf('?'));
+    //     this._router.navigateByUrl(url);
 
-      });
-    }
+    //   });
+    // }
   }
   logout(){
     this.authService.logout();

@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { BuyPositionComponent } from './position-update/buy-position/buy-position.component';
 import { SellPositionComponent } from './position-update/sell-position/sell-position.component';
 import { PositionUpdateComponent } from './position-update//position-update.component';
-import { LoginComponent } from './login/login.component';
 import { PositionListViewComponent } from './position-view/position-list-view/position-list-view.component';
 import { PositionDetailViewComponent } from './position-view/position-detail-view/position-detail-view.component';
 import { BuyPositionExpandViewComponent } from './position-view/position-expand-view/buy-position-expand-view.component';
@@ -27,6 +26,9 @@ import { HistoryViewComponent } from './position-view/history-view/history-view.
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { AuthService } from './services/auth.service';
+import { CallbackComponent } from './callback/callback.component';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 @NgModule({
@@ -35,7 +37,6 @@ import { AuthService } from './services/auth.service';
     BuyPositionComponent,
     SellPositionComponent,
     PositionUpdateComponent,
-    LoginComponent,
     PositionListViewComponent,
     PositionDetailViewComponent,
     BuyPositionExpandViewComponent,
@@ -46,7 +47,9 @@ import { AuthService } from './services/auth.service';
     PageNotFoundComponent,
     SellPositionExpandViewComponent,
     HistoryViewComponent,
-    ChartComponent
+    ChartComponent,
+    CallbackComponent,
+    AdminComponent
 
   ],
   imports: [
@@ -60,7 +63,8 @@ import { AuthService } from './services/auth.service';
     ChartsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
