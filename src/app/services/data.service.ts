@@ -30,6 +30,8 @@ export class DataService {
   }
 
   getCurrentPositions(){
+    //let token = localStorage.getItem('access_token');
+
     return this.http.get<CurrentPosition[]>('/api/positions/current');
     
   }

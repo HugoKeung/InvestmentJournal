@@ -18,7 +18,7 @@ import { appRoutes } from '../routes';
 import { PositionViewComponent } from './position-view/position-view.component';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { HistoryComponent } from './history/history.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 import { StockService } from './services/stock.service';
 import { SellPositionExpandViewComponent } from './position-view/position-expand-view/sell-position-expand-view/sell-position-expand-view.component';
@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './services/auth.guard';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { AuthGuard } from './services/auth.guard';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
