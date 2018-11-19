@@ -11,14 +11,15 @@ export class AuthInterceptor implements HttpInterceptor{
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //only send bearer header with access token if is talking to own API
-   
-        var accessToken = localStorage.getItem('access_token');
-        const headers = req.headers.set('Authorization', 'Bearer ' + accessToken);
-        const authReq = req.clone({headers});
-        return next.handle(authReq);
-
     
+        if(req.url.startsWith('/api/positions')){
+            var accessToken = localStorage.getItem('access_token');
+            const headers = req.headers.set('authorization', 'Bearer ' + accessToken);
+            const authReq = req.clone({headers});
+            return next.handle(authReq);
+        } else {
+            return next.handle(req);
+        }    
     }
 
 
