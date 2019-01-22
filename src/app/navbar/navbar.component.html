@@ -17,11 +17,15 @@
       </ul>
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
-          <li>
+          
+          <li *ngIf="!authenticated()">
             <a (click)="login()">Login</a>
           </li>
-          <li>
-            <a (click) = "logout()">Logout</a>
+          <li *ngIf="authenticated()">
+              <a>{{profile?.email}}</a>
+            </li>
+          <li *ngIf="authenticated()">
+            <a (click) = "logout()">Loogout</a>
           </li>
           
         </ul>

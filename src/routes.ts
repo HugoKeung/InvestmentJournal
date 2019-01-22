@@ -17,7 +17,7 @@ export const appRoutes:Routes=[
     {path: '', redirectTo:'/home', pathMatch: 'full'},
     {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
     {path: 'home', component: PositionViewComponent},
-    {path: 'history', component: HistoryComponent, canActivate:[AuthGuard]},
+    {path: 'history', component: HistoryComponent},
     {path: 'callback', component: CallbackComponent},
     {path: 'position/buy/:id', component: BuyPositionExpandViewComponent },
     {path: 'position/sell/:id', component: SellPositionExpandViewComponent},

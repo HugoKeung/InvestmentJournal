@@ -9,17 +9,20 @@ import { Router } from '../../../node_modules/@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  profile: any;
+
   constructor(private authService: AuthService, private _router:Router) {
+
    }
 
   ngOnInit() {
-    // if (window.location.href.indexOf('?postLogout=true')> 0){
-    //   this.authService.signoutRedirectCallback().then(()=>{
-    //     let url: string = this._router.url.substring(0, this._router.url.indexOf('?'));
-    //     this._router.navigateByUrl(url);
-
-    //   });
-    // }
+    if (this.authService.userProfile) {
+      this.profile = this.authService.userProfile;
+    } else {
+      this.authService.getProfile((err, profile) => {
+        this.profile = profile;
+      });
+    }
   }
   logout(){
     this.authService.logout();
@@ -27,6 +30,10 @@ export class NavbarComponent implements OnInit {
 
   login(){
     this.authService.login();
+  }
+
+  authenticated(){
+    return this.authService.isAuthenticated();
   }
 
 
