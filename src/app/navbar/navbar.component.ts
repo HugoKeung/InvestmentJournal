@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '../../../node_modules/@angular/router';
-import { CurrentUserService } from '../services/current-user.service';
+
 
 @Component({
   selector: 'app-navbar',

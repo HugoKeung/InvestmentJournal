@@ -32,7 +32,6 @@ import { AuthGuard } from './services/auth.guard';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { UnauthorisedComponent } from './admin/unauthorised/unauthorised.component';
 import { ScopeGuard } from './services/scope.guard';
-import { CurrentUserService } from './services/current-user.service';
 
 
 @NgModule({
@@ -69,7 +68,6 @@ import { CurrentUserService } from './services/current-user.service';
   ],
   providers: [
     AuthService,
-    CurrentUserService,
     ScopeGuard,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
