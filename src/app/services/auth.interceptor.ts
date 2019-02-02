@@ -11,16 +11,28 @@ export class AuthInterceptor implements HttpInterceptor{
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-        if(req.url.startsWith('/api/positions')){
-            var accessToken = localStorage.getItem('access_token');
+
+            var accessToken = this.authService.accessToken;
             const headers = req.headers.set('Authorization', 'Bearer ' + accessToken);
             const authReq = req.clone({headers});
             return next.handle(authReq);
-        } else {
-            return next.handle(req);
-        }    
     }
+
+
+    // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        
+    //     if(req.url.startsWith('/api/positions')){
+    //         var accessToken = this.authService.accessToken;
+    //         console.log(accessToken);
+    //         const headers = req.headers.set('Authorization', 'Bearer ' + accessToken);
+    //         const authReq = req.clone({headers});
+      
+    //         return next.handle(authReq);
+    //     } else {
+          
+    //         return next.handle(req);
+    //     }    
+    // }
 
 
 }

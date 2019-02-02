@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-callback',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./callback.component.css']
 })
 export class CallbackComponent implements OnInit {
-
-  constructor() { }
+  profile:any;
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    // if (this.authService.userProfile) {
+    //   this.profile = this.authService.userProfile;
+    // } else {
+    //   this.authService.getProfile((err, profile) => {
+    //     this.profile = profile;
+    //   });
+    // }
   }
 
 }

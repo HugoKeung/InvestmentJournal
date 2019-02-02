@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '../../../node_modules/@angular/router';
+import { CurrentUserService } from '../services/current-user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,18 +12,19 @@ export class NavbarComponent implements OnInit {
 
   profile: any;
 
-  constructor(private authService: AuthService, private _router:Router) {
-
+  constructor(private authService: AuthService, _router:Router) {
+    
+    authService.profileEmitter.subscribe(a => this.setProfile(a));
+   
    }
 
   ngOnInit() {
-    if (this.authService.userProfile) {
-      this.profile = this.authService.userProfile;
-    } else {
-      this.authService.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
+    this.authService.getProfile((err, profile)=>{
+    });
+  }
+
+  setProfile(profile){
+    this.profile = profile;
   }
   logout(){
     this.authService.logout();

@@ -30,6 +30,9 @@ import { CallbackComponent } from './callback/callback.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { UnauthorisedComponent } from './admin/unauthorised/unauthorised.component';
+import { ScopeGuard } from './services/scope.guard';
+import { CurrentUserService } from './services/current-user.service';
 
 
 @NgModule({
@@ -50,7 +53,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     HistoryViewComponent,
     ChartComponent,
     CallbackComponent,
-    AdminComponent
+    AdminComponent,
+    UnauthorisedComponent
 
   ],
   imports: [
@@ -65,6 +69,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
   ],
   providers: [
     AuthService,
+    CurrentUserService,
+    ScopeGuard,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

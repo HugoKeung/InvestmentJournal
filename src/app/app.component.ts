@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
   title = 'app';
   constructor(private authService: AuthService){
     authService.handleAuthentication();
+    authService.scheduleRenewal();
   }
 
   ngOnInit() {

@@ -30,7 +30,7 @@
     "ng2-charts": "^1.6.0",
     "ngf-bootstrap": "0.0.5",
     "oidc-client": "^1.5.3-beta.1",
-    "rxjs": "^6.2.2",
+    "rxjs": "^6.4.0",
     "rxjs-compat": "^6.2.0",
     "zone.js": "^0.8.26"
   },

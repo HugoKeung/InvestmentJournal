@@ -10,6 +10,8 @@ import { SellPositionExpandViewComponent } from './app/position-view/position-ex
 import { CallbackComponent } from './app/callback/callback.component';
 import { AdminComponent } from './app/admin/admin.component';
 import { AuthGuard } from './app/services/auth.guard';
+import { UnauthorisedComponent } from './app/admin/unauthorised/unauthorised.component';
+import { ScopeGuard } from './app/services/scope.guard';
 
 
 export const appRoutes:Routes=[
@@ -17,11 +19,12 @@ export const appRoutes:Routes=[
     {path: '', redirectTo:'/home', pathMatch: 'full'},
     {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
     {path: 'home', component: PositionViewComponent},
-    {path: 'history', component: HistoryComponent},
+    {path: 'history', component: HistoryComponent, canActivate:[ScopeGuard], data:{expectedScopes: ['read:history']}},
     {path: 'callback', component: CallbackComponent},
     {path: 'position/buy/:id', component: BuyPositionExpandViewComponent },
     {path: 'position/sell/:id', component: SellPositionExpandViewComponent},
     {path: '404', component: PageNotFoundComponent},
+    {path: 'unauthorized', component: UnauthorisedComponent},
     {path: '**', redirectTo:'/404'}
 
 ]

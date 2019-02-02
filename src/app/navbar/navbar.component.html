@@ -21,9 +21,10 @@
           <li *ngIf="!authenticated()">
             <a (click)="login()">Login</a>
           </li>
-          <li *ngIf="authenticated()">
-              <a>{{profile?.email}}</a>
+         <li *ngIf="authenticated()">
+              <a>email: {{profile?.name}}</a>
             </li>
+         
           <li *ngIf="authenticated()">
             <a (click) = "logout()">Loogout</a>
           </li>

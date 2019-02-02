@@ -5,13 +5,14 @@ import { BuyPosition } from '../model/BuyPosition.model';
 import { CurrentPosition } from '../model/CurrentPosition.model';
 import { SimplePosition } from '../model/SimplePosition.model';
 import { SellPosition } from '../model/SellPosition.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, private authService: AuthService) { 
  
   }
 
@@ -41,7 +42,6 @@ export class DataService {
   }
 
   getAll(){
-
     return this.http.get<SimplePosition[]>('api/positions/all');
 
   }
