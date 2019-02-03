@@ -6,19 +6,19 @@ import { CurrentPosition } from '../model/CurrentPosition.model';
 import { SimplePosition } from '../model/SimplePosition.model';
 import { SellPosition } from '../model/SellPosition.model';
 import { AuthService } from './auth.service';
+import { MyHttpClientService } from './my-http-client.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  constructor(private http:HttpClient, private authService: AuthService) { 
- 
+  options: any;
+  constructor(private http: MyHttpClientService, private authService: AuthService) { 
   }
 
   saveBuyForm(formValue){
     let body = JSON.stringify(formValue.value);
-    return this.http.post('/api/positions/buy', body, options);
+    return this.http.post('/api/positions/buy', body);
  
   }
 
@@ -26,7 +26,7 @@ export class DataService {
 
   saveSellForm(formValue){
     let body = JSON.stringify(formValue.value);
-    return this.http.post('/api/positions/sell', body, options);
+    return this.http.post('/api/positions/sell', body);
 
   }
 
@@ -60,4 +60,4 @@ export class DataService {
 
 }
 
-const options={ headers: new HttpHeaders({'Content-Type': 'application/json'})};
+//const options={ headers: new HttpHeaders({'Content-Type': 'application/json'})};

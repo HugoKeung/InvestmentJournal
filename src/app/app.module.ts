@@ -69,8 +69,8 @@ import { ScopeGuard } from './services/scope.guard';
   providers: [
     AuthService,
     ScopeGuard,
-    AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    AuthGuard
+  //  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

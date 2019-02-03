@@ -146,7 +146,6 @@ export class AuthService {
     return scopes.every(scope => grantedScopes.includes(scope));
   }
 
-
   public scheduleRenewal() {
     
     if (!this.isAuthenticated()) { return; }
