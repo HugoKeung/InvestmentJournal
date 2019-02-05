@@ -9,5 +9,7 @@ They can also look back to their rationale of their purchase to see if things we
 
 This provides good discipline for the investor to make sure they can back up every position their hold, and consider the pros and cons for every purchase they make.
 
+Auth0 is used for authentication and authorisation for the application. (work in progress)
+
 The back-end (also under construction) is written in Spring, and can be found here:
 https://github.com/HugoKeung/InvestmentJournal-Server
