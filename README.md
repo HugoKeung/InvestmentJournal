@@ -13,7 +13,8 @@ Auth0 is used for authentication and authorisation for the application. (work in
 
 ng2-chart is used to plot the charts. The real stock price data, and the historical data and company description is pulled from: https://api.iextrading.com/
 
-![Screenshot](https://i.imgur.com/NN86gU0.png "screenshot of the mainscreen (which like the rest of the project is still work in progress)")
+![Screenshot](https://i.imgur.com/NN86gU0.png )
+above show screenshot of the mainscreen (which like the rest of the project is still work in progress)
 
 The back-end (also under construction) is written in Spring, and can be found here:
 https://github.com/HugoKeung/InvestmentJournal-Server
