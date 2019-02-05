@@ -1,6 +1,6 @@
 Under construction.
 
-This directory containes teh Angular front-end for the web-app Investment Journal.
+This directory containes the Angular front-end for the web-app Investment Journal.
 
 User can input their positions for different stocks and the rationale behind their purchase.
 
