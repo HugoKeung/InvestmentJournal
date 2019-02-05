@@ -11,5 +11,10 @@ This provides good discipline for the investor to make sure they can back up eve
 
 Auth0 is used for authentication and authorisation for the application. (work in progress)
 
+below show screenshot of the mainscreen (which like the rest of the project is still work in progress)
+
+ng2-chart is used to plot the charts. The real stock price data, and the historical data and company description is pulled from: https://api.iextrading.com/
+![alt-text](https://imgur.com/a/YYYC6fO)
+
 The back-end (also under construction) is written in Spring, and can be found here:
 https://github.com/HugoKeung/InvestmentJournal-Server
