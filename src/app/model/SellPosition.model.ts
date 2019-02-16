@@ -5,4 +5,5 @@ export interface SellPosition{
     shares: number;
     price: number;
     sellReason: string;
+    user_id: string;
 }

@@ -72,7 +72,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
          
           let tempPrice = data.map(a => a.open);
           this.openPrice[0].data = tempPrice;
-          
+          this.openPrice[0].label = this.ticker;
           this.date = data.map(a=> a.date);
       },
       err=>{console.error(err)},

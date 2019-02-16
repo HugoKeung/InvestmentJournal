@@ -20,14 +20,15 @@ export class PositionViewComponent implements OnInit {
   currentSort: string = 'time';
   constructor(private dataService:DataService, private stockService: StockService, private sortService: SortService) { 
     this.authenticate();
-
+    
   }
 
   ngOnInit() {
-  
-    this.getPositions();
-
-   
+    this.dataService.readySubscription = this.dataService.readyItem$.subscribe(ready=>{
+     if(ready) {
+       this.getPositions();
+     }
+    })
   }
   
   authenticate(){

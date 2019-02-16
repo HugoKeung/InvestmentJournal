@@ -5,28 +5,30 @@ import * as auth0 from 'auth0-js';
 import { Observable, Subject, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import 'rxjs/add/observable/timer';
+import { ProfileService } from './profile.service';
 
 
 
 @Injectable()
 export class AuthService {
 
-  @Output() profileEmitter: EventEmitter<any> = new EventEmitter();  
+  // @Output() profileEmitter: EventEmitter<any> = new EventEmitter();  
+  // @Output() userIdEmitter: EventEmitter<any> = new EventEmitter();  
   refreshSub: any;
+  
 
-  requestedScopes: string = 'openid profile read:history';
+  requestedScopes: string = 'openid user_id email profile read:history';
 
   auth0 = new auth0.WebAuth({
-    clientID: 'bBxk86jCMDfSpEFJQ7X4sOJAmNte1DZc',
+    clientID: 'PzsSdSlVxOfigs0LIADSGSt4bEDhjfiP',
     domain: 'hugokeung.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'http://localhost:8080/api',
     redirectUri: 'http://localhost:4200/callback',
     scope: this.requestedScopes
   });
-  constructor(public router: Router) {
+  constructor(public router: Router, private profileService: ProfileService) {
 
-   // this.profileEmitter.emit(localStorage.getItem('userProfile'));
   }
 
   public login(): void {
@@ -67,7 +69,7 @@ export class AuthService {
     localStorage.setItem('scopes', JSON.stringify(scopes));
 
     this.getProfile((err, profile)=>{
-
+      this.profileService.changeProfile(profile);
     });
     this.scheduleRenewal();
     
@@ -80,8 +82,11 @@ export class AuthService {
     if (localStorage.getItem('accessToken')){
       this.auth0.client.userInfo(localStorage.getItem('accessToken'), (err, profile) => {
         if (profile) {
-          this.profileEmitter.emit(profile);
+          this.profileService.changeProfile(profile);
+     
         }
+
+        localStorage.setItem('user_id', profile.sub.split('|')[1]);
         localStorage.setItem('userProfile', JSON.stringify(profile));
         cb(err, profile);
       });
@@ -107,7 +112,7 @@ export class AuthService {
     localStorage.removeItem('idToken');
     localStorage.removeItem('expiresAt');
     localStorage.removeItem('userProfile');
-
+    localStorage.removeItem('user_id');
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
     this.unscheduleRenewal();

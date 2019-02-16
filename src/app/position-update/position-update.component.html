@@ -10,8 +10,8 @@
         </div>
     </div>
  
-    <app-buy-position *ngIf="buy"></app-buy-position>
-    <app-sell-position *ngIf="!buy"></app-sell-position>
+    <app-buy-position [user_id]=user_id *ngIf="buy"></app-buy-position>
+    <app-sell-position  [user_id]=user_id *ngIf="!buy"></app-sell-position>
 
 
 

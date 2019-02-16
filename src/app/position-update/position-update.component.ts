@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PositionUpdateComponent implements OnInit {
   buy: boolean=true;
+  user_id: string;
   constructor() { }
 
   ngOnInit() {
-
+    this.user_id = localStorage.getItem('user_id');
   }
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '../../../node_modules/@angular/router';
+import { Subscription } from 'rxjs';
+import { ProfileService } from '../services/profile.service';
 
 
 @Component({
@@ -11,15 +13,15 @@ import { Router } from '../../../node_modules/@angular/router';
 export class NavbarComponent implements OnInit {
 
   profile: any;
-
-  constructor(private authService: AuthService, _router:Router) {
-    
-    authService.profileEmitter.subscribe(a => this.setProfile(a));
+  subscription: Subscription;
+  constructor(private authService: AuthService, _router:Router, private profileService: ProfileService) {
+    this.subscription = this.profileService.profileItem$.subscribe(profile => this.setProfile(profile))
    
    }
 
   ngOnInit() {
     this.authService.getProfile((err, profile)=>{
+ 
     });
   }
 

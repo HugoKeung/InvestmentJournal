@@ -18,7 +18,7 @@ export const appRoutes:Routes=[
     {path: 'edit', component: PositionUpdateComponent},
     {path: '', redirectTo:'/home', pathMatch: 'full'},
     {path: 'admin', component: AdminComponent, canActivate:[AuthGuard]},
-    {path: 'home', component: PositionViewComponent},
+    {path: 'home', component: PositionViewComponent, canActivate:[AuthGuard]},
     {path: 'history', component: HistoryComponent, canActivate:[ScopeGuard], data:{expectedScopes: ['read:history']}},
     {path: 'callback', component: CallbackComponent},
     {path: 'position/buy/:id', component: BuyPositionExpandViewComponent },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {FormGroup,  FormControl, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
@@ -21,6 +21,7 @@ export class BuyPositionComponent implements OnInit {
   filteredTickers: Observable<FormTicker[]>;
   tickerCheck: string[];
   loaded: boolean = false;
+  @Input() user_id: string;
   constructor(private router:Router, private dataService: DataService, private fb:FormBuilder, private stockService: StockService) { }
 
   ngOnInit() {
@@ -42,14 +43,13 @@ export class BuyPositionComponent implements OnInit {
           strength:['', Validators.required],
           weakness:['', Validators.required],
           opportunity:['', Validators.required],
-          threat:['', Validators.required]
-          
-          
+          threat:['', Validators.required],
+          user_id:[this.user_id]
         });
         this.loaded = true;
         this.filteredTickers = this.positionForm.get('ticker').valueChanges.pipe(
           startWith(''), map(value => this._filter(value)));
-
+          
       }
     );
 

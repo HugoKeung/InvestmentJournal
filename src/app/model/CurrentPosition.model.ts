@@ -5,4 +5,5 @@ export interface CurrentPosition{
     buyPrice: number;
     sellPrice: number;
     currentPrice: number;
+    user_id: string;
 }
