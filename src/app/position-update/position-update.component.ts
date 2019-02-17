@@ -11,7 +11,7 @@ export class PositionUpdateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.user_id = localStorage.getItem('user_id');
+   
   }
 
 

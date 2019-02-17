@@ -12,7 +12,7 @@ import { DateValidator } from '../../validators/date.validator';
 export class SellPositionComponent implements OnInit {
   positionForm: FormGroup;
   tickers: string[];
-  @Input() user_id: string;
+
   constructor(private router:Router, private dataService:DataService, private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class SellPositionComponent implements OnInit {
       shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       date:['', [Validators.required, DateValidator.notFuture]],
       sellReason:['', Validators.required],
-      user_id:[this.user_id]
+      user_id:['']
     })
 
   }

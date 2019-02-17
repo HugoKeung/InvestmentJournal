@@ -24,11 +24,12 @@ export class PositionViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.readySubscription = this.dataService.readyItem$.subscribe(ready=>{
-     if(ready) {
-       this.getPositions();
-     }
-    })
+    // this.dataService.readySubscription = this.dataService.readyItem$.subscribe(ready=>{
+    //  if(ready) {
+    //    this.getPositions();
+    //  }
+    // })
+    this.getPositions();
   }
   
   authenticate(){

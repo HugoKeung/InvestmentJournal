@@ -85,7 +85,6 @@ export class AuthService {
           this.profileService.changeProfile(profile);
      
         }
-
         localStorage.setItem('user_id', profile.sub.split('|')[1]);
         localStorage.setItem('userProfile', JSON.stringify(profile));
         cb(err, profile);
