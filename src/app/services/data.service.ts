@@ -41,7 +41,9 @@ export class DataService {
   }
 
   saveBuyForm(formValue){
+
     let body = JSON.stringify(formValue.value);
+    console.log(body);
     return this.http.post('api/positions/buy', body);
  
   }
@@ -54,7 +56,6 @@ export class DataService {
 
   getCurrentPositions(){
     return this.http.get<CurrentPosition[]>('api/positions/current');
-    //return this.http.get<CurrentPosition[]>('/api/users/no/positions/current/ticker/SPY');
 
   }
 

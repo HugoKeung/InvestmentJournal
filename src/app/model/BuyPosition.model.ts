@@ -9,6 +9,6 @@ export interface BuyPosition{
     weakness: string;
     opportunity: string;
     threat: string;
-    user_id: string;
+    userId: string;
 
 }

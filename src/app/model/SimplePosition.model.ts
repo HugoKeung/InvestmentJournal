@@ -6,6 +6,6 @@ export interface SimplePosition{
     shares: number;
     price: number;
     flag: string;
-    user_id: string;
+    userId: string;
 
 }

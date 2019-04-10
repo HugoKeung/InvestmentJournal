@@ -44,7 +44,7 @@ export class BuyPositionComponent implements OnInit {
           weakness:['', Validators.required],
           opportunity:['', Validators.required],
           threat:['', Validators.required],
-          user_id:['']
+          userId:[localStorage.getItem('user_id')]
         });
         this.loaded = true;
         this.filteredTickers = this.positionForm.get('ticker').valueChanges.pipe(
@@ -62,6 +62,7 @@ export class BuyPositionComponent implements OnInit {
 
     this.dataService.saveBuyForm(formValues).subscribe(
       data => {
+
         this.router.navigate(['home']);
       },
       err => {console.log(err.error.text);},
