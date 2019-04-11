@@ -10,7 +10,7 @@ import { ProfileService } from './profile.service';
 
 
 @Injectable()
-export class AuthService {
+export class AuthService{
 
   // @Output() profileEmitter: EventEmitter<any> = new EventEmitter();  
   // @Output() userIdEmitter: EventEmitter<any> = new EventEmitter();  
@@ -101,6 +101,7 @@ export class AuthService {
       } else if (err) {
         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
         this.logout();
+        this.router.navigate['/welcome'];
       }
     });
 }

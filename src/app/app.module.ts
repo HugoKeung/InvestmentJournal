@@ -32,6 +32,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { UnauthorisedComponent } from './admin/unauthorised/unauthorised.component';
 import { ScopeGuard } from './services/scope.guard';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ScopeGuard } from './services/scope.guard';
     ChartComponent,
     CallbackComponent,
     AdminComponent,
-    UnauthorisedComponent
+    UnauthorisedComponent,
+    WelcomeComponent
 
   ],
   imports: [

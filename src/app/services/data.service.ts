@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { MyHttpClientService } from './my-http-client.service';
 import { ProfileService } from './profile.service';
 import { Subscription, Observable, BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 export class DataService {
   options: any;
   user_id: string;
-  api_url: string;
+  api_url = environment.data_url;
   profileSubscription: Subscription;
   readySubscription: Subscription;
   ready = false;
@@ -33,51 +34,51 @@ export class DataService {
     // })
   }
 
-  setApiUrl(profile){
+  // setApiUrl(profile){
     
-    this.user_id = profile.sub.split('|')[1];
+  //   this.user_id = profile.sub.split('|')[1];
   
-    this.api_url = '/api/users/' + this.user_id;
-  }
+  //   this.api_url = '/api/users/' + this.user_id;
+  // }
 
   saveBuyForm(formValue){
 
     let body = JSON.stringify(formValue.value);
     console.log(body);
-    return this.http.post('api/positions/buy', body);
+    return this.http.post(this.api_url+'buy', body);
  
   }
 
   saveSellForm(formValue){
     let body = JSON.stringify(formValue.value);
-    return this.http.post('api/positions/sell', body);
+    return this.http.post(this.api_url+'sell', body);
 
   }
 
   getCurrentPositions(){
-    return this.http.get<CurrentPosition[]>('api/positions/current');
+    return this.http.get<CurrentPosition[]>(this.api_url+'current');
 
   }
 
   getCurrentTickers(){
-    return this.http.get<string[]>('api/positions/current/tickers');
+    return this.http.get<string[]>(this.api_url+'current/tickers');
   }
 
   getAll(){
-    return this.http.get<SimplePosition[]>('api/positions/all');
+    return this.http.get<SimplePosition[]>(this.api_url+'all');
 
   }
 
   getSingleBuyPosition(id: number){
-    return this.http.get<BuyPosition>('api/positions/buy/' + id);
+    return this.http.get<BuyPosition>(this.api_url+'buy/' + id);
   }
 
   getSingleSellPosition(id: number){
-    return this.http.get<SellPosition>('api/positions/sell/' + id);
+    return this.http.get<SellPosition>(this.api_url+'sell/' + id);
   }
 
   getTickerPosition(ticker: string){
-    return this.http.get<BuyPosition[]>('api/positions/current/ticker/' + ticker);
+    return this.http.get<BuyPosition[]>(this.api_url+'current/ticker/' + ticker);
   }
 
 }

@@ -12,6 +12,7 @@ import { AdminComponent } from './app/admin/admin.component';
 import { AuthGuard } from './app/services/auth.guard';
 import { UnauthorisedComponent } from './app/admin/unauthorised/unauthorised.component';
 import { ScopeGuard } from './app/services/scope.guard';
+import { WelcomeComponent } from './app/welcome/welcome.component';
 
 
 export const appRoutes:Routes=[
@@ -25,6 +26,7 @@ export const appRoutes:Routes=[
     {path: 'position/sell/:id', component: SellPositionExpandViewComponent},
     {path: '404', component: PageNotFoundComponent},
     {path: 'unauthorized', component: UnauthorisedComponent},
+    {path: 'welcome', component: WelcomeComponent},
     {path: '**', redirectTo:'/404'}
 
 ]
