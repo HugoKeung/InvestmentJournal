@@ -8,6 +8,7 @@ import { StockService } from '../../services/stock.service';
 import { FormTicker } from '../../model/formTicker.model';
 import {Observable, of} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-buy-position',
@@ -21,6 +22,7 @@ export class BuyPositionComponent implements OnInit {
   filteredTickers: Observable<FormTicker[]>;
   tickerCheck: string[];
   loaded: boolean = false;
+  searchChoice: boolean =true;
 
   constructor(private router:Router, private dataService: DataService, private fb:FormBuilder, private stockService: StockService) { }
 
@@ -32,10 +34,10 @@ export class BuyPositionComponent implements OnInit {
       err=>{console.error(err);},
       ()=>{
         this.tickerCheck = this.allTickers.map(function (tickers){
-          return tickers['symbol'];
+          return tickers['symbol'] + ':' + tickers['name'];
         });
         this.positionForm=this.fb.group({
-          ticker:['', [Validators.required, Validators.maxLength(4), MatchValidator.inArray(this.tickerCheck)]],
+          ticker:['', [Validators.required, MatchValidator.inArray(this.tickerCheck)]],
           price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
           shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
           date:['', [Validators.required, DateValidator.notFuture]],
@@ -53,13 +55,13 @@ export class BuyPositionComponent implements OnInit {
       }
     );
 
-
-  
 }
 
   saveBuyDetailForm(formValues){
     //formValues.patchValue({date: new Date(formValues.controls.date.value)});
-
+    let fullName: string = this.positionForm.controls['ticker'].value;
+    let ticker: string = fullName.substring(0, fullName.indexOf(':'));
+    this.positionForm.controls['ticker'].setValue(ticker)
     this.dataService.saveBuyForm(formValues).subscribe(
       data => {
 
@@ -72,15 +74,22 @@ export class BuyPositionComponent implements OnInit {
   //slice it here
    _filter(value: string): FormTicker[]{
     const filterValue = value.toUpperCase();
-   
+    var choice = this.searchChoice;
     return this.allTickers.filter(
+      
       function(ticker){
-        return ticker.symbol.toUpperCase().includes(filterValue) || ticker.name.toUpperCase().includes(filterValue);
+        if (choice){
+          return ticker.symbol.toUpperCase().includes(filterValue);
+        }
+        else return ticker.name.toUpperCase().includes(filterValue);
       }
     
     );
-    
+  }
 
+  setSearchChoice(value){
+    this.searchChoice = value;
+    this.positionForm.controls['ticker'].setValue('');
   }
 
 }

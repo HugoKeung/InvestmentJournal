@@ -1,21 +1,29 @@
 
 
 <div class="col-md-12">
-  <h2>buy FOrm</h2>
+  <h2>Buy Form</h2>
   <div *ngIf="loaded">
   <div class="col-md-6">
     <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
 
       <div class="form-group">
-        <label for="ticker">Ticker:</label>
+        <label for="ticker" class="col-sm-4 col-md-4 control-label text-right">Company:</label>
+        <div class="col-sm-7 col-md-7">
+          <div class="input-group">
+            <div id="radioBtn" class="btn-group">
+              <a class="btn btn-primary" (click)="setSearchChoice(true)">Ticker</a>
+              <a class="btn btn-default" (click)="setSearchChoice(false)">Name</a>
+            </div>
+          </div>
+        </div>
         <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty ">Please enter a valid ticker</em>
         <!--------TODO force user to enter upper ---->
         <mat-form-field>
-            <input type="text" matInput formControlName="ticker" placeholder="Ticker Symbol" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option [value]="ticker.symbol" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
-                <div class="form-control">{{ticker.symbol}} : {{ticker.name}}</div>
+          <div > <input type="text" matInput formControlName="ticker" [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
                 
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option [value]="ticker.symbol + ':' + ticker.name" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
+                <div class="form-control">{{ticker.symbol}} : {{ticker.name}}</div>
                 
               </mat-option>
             </mat-autocomplete>
