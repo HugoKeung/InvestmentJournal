@@ -47,7 +47,7 @@ export class BuyPositionComponent implements OnInit {
           opportunity:['', Validators.required],
           threat:['', Validators.required],
           userId:[localStorage.getItem('user_id')]
-        });
+        }, {updateOn: 'blur'});
         this.loaded = true;
         this.filteredTickers = this.positionForm.get('ticker').valueChanges.pipe(
           startWith(''), map(value => this._filter(value)));
@@ -79,7 +79,7 @@ export class BuyPositionComponent implements OnInit {
       
       function(ticker){
         if (choice){
-          return ticker.symbol.toUpperCase().includes(filterValue);
+          return ticker.symbol.toUpperCase().startsWith(filterValue);
         }
         else return ticker.name.toUpperCase().includes(filterValue);
       }

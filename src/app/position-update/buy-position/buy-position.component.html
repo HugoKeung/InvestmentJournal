@@ -7,19 +7,17 @@
     <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
 
       <div class="form-group">
-        <label for="ticker" class="col-sm-4 col-md-4 control-label text-right">Company:</label>
-        <div class="col-sm-7 col-md-7">
-          <div class="input-group">
+        <label for="ticker">Company:</label>
+                
             <div id="radioBtn" class="btn-group">
-              <a class="btn btn-primary" (click)="setSearchChoice(true)">Ticker</a>
-              <a class="btn btn-default" (click)="setSearchChoice(false)">Name</a>
+              <a class="btn btn-primary" [class.active]="searchChoice"(click)="setSearchChoice(true)">Ticker</a>
+              <a class="btn btn-default" [class.active]="!searchChoice"(click)="setSearchChoice(false)">Name</a>
             </div>
-          </div>
-        </div>
+                 
         <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty ">Please enter a valid ticker</em>
         <!--------TODO force user to enter upper ---->
         <mat-form-field>
-          <div > <input type="text" matInput formControlName="ticker" [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
+          <div class="col md-6"> <input type="text" matInput formControlName="ticker" [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
                 
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option [value]="ticker.symbol + ':' + ticker.name" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
