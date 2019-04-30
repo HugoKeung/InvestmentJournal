@@ -5,7 +5,7 @@
   <div *ngIf="loaded">
   <div class="col-md-6">
     <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
-
+      <app-autocomplete (textChange)="textChangeHandler($event)"></app-autocomplete>
       <div class="form-group">
         <label for="ticker">Company:</label>
                 

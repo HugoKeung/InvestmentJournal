@@ -33,6 +33,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { UnauthorisedComponent } from './admin/unauthorised/unauthorised.component';
 import { ScopeGuard } from './services/scope.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AutocompleteComponent } from './common/autocomplete/autocomplete.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     CallbackComponent,
     AdminComponent,
     UnauthorisedComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AutocompleteComponent
 
   ],
   imports: [

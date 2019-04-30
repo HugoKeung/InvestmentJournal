@@ -1,0 +1,24 @@
+<div class="form-group">
+  <label for="ticker">Company:</label>
+          
+      <div id="radioBtn" class="btn-group">
+        <a class="btn btn-primary" [class.active]="searchChoice"(click)="setSearchChoice(true)">Ticker</a>
+        <a class="btn btn-default" [class.active]="!searchChoice"(click)="setSearchChoice(false)">Name</a>
+      </div>
+           
+  <em *ngIf="in">Please enter a valid ticker</em>
+  <!--------TODO force user to enter upper ---->
+  <mat-form-field>
+    <div class="col md-6"> <input [formControl]="myControl" (ngModelChange)="onChange($event)" type="text" matInput [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
+          
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option [value]="ticker.symbol + ':' + ticker.name" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
+          <div>{{ticker.symbol}} : {{ticker.name}}</div>
+          
+        </mat-option>
+      </mat-autocomplete>
+
+  </mat-form-field>
+
+
+</div>  

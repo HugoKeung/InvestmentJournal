@@ -92,4 +92,8 @@ export class BuyPositionComponent implements OnInit {
     this.positionForm.controls['ticker'].setValue('');
   }
 
+  textChangeHandler(text: string){
+    this.positionForm.controls['ticker'].setValue(text);
+  }
+
 }

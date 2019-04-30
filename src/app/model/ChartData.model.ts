@@ -1,5 +1,5 @@
 export interface ChartData{
     date: string;
-    open: string;
+    close: number;
     
 }

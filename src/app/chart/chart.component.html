@@ -1,16 +1,17 @@
 <div class="btn-group">
-  <button class="btn-group btn-default" [class.active]="time==='1d'" (click)="time=getChart('1d')">1d</button>
-  <button class="btn-group btn-default" [class.active]="time==='1m'" (click)="time=getChart('1m')">1m</button>
-  <button class="btn-group btn-default" [class.active]="time==='3m'" (click)="time=getChart('3m')">3m</button>
-  <button class="btn-group btn-default" [class.active]="time==='6m'" (click)="time=getChart('6m')">6m</button>
-  <button class="btn-group btn-default" [class.active]="time==='ytd'" (click)="time=getChart('ytd')">ytd</button>
-  <button class="btn-group btn-default" [class.active]="time==='1y'" (click)="time=getChart('1y')">1y</button>
+  <button class="btn-group btn-default" [class.active]="time==='1d'" (click)="time=createChart(this.ticker,'1d')">1d</button>
+  <button class="btn-group btn-default" [class.active]="time==='1m'" (click)="time=createChart(this.ticker,'1m')">1m</button>
+  <button class="btn-group btn-default" [class.active]="time==='3m'" (click)="time=createChart(this.ticker,'3m')">3m</button>
+  <button class="btn-group btn-default" [class.active]="time==='6m'" (click)="time=createChart(this.ticker, '6m')">6m</button>
+  <button class="btn-group btn-default" [class.active]="time==='ytd'" (click)="time=createChart(this.ticker,'ytd')">ytd</button>
+  <button class="btn-group btn-default" [class.active]="time==='1y'" (click)="time=createChart(this.ticker,'1y')">1y</button>
+  <app-autocomplete (textChange)="textChangeHandler($event)"></app-autocomplete>
 </div>
 <div class="row" >
     <div class="col-md-6">
       <div style="display: block;">
       <canvas baseChart width="200" height="75"
-                  [datasets]="openPrice"
+                  [datasets]="chartData"
                   [labels]="date"
                   [options]="lineChartOptions"
                   [colors]="lineChartColors"
