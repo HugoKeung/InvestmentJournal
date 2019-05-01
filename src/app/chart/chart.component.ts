@@ -33,14 +33,30 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   //set colour of line
   public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
+    // { // grey
+    //   backgroundColor: 'rgba(148,159,177,0.2)',
+    //   borderColor: 'rgba(148,159,177,1)',
+    //   pointBackgroundColor: 'rgba(148,159,177,1)',
+    //   pointBorderColor: '#fff',
+    //   pointHoverBackgroundColor: '#fff',
+    //   pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    // },
+    // { // dark grey
+    //   backgroundColor: 'rgba(77,83,96,0.2)',
+    //   borderColor: 'rgba(77,83,96,1)',
+    //   pointBackgroundColor: 'rgba(77,83,96,1)',
+    //   pointBorderColor: '#fff',
+    //   pointHoverBackgroundColor: '#fff',
+    //   pointHoverBorderColor: 'rgba(77,83,96,1)'
+    // },
+    // { // red
+    //   backgroundColor: 'rgba(255,0,0,0.3)',
+    //   borderColor: 'red',
+    //   pointBackgroundColor: 'rgba(148,159,177,1)',
+    //   pointBorderColor: '#fff',
+    //   pointHoverBackgroundColor: '#fff',
+    //   pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    // }
   ];
   public lineChartLegend:boolean = true;
 
@@ -60,17 +76,17 @@ export class ChartComponent implements OnInit, AfterViewInit {
   constructor(private stockService: StockService, private el: ElementRef) { }
 //TODO add latest price to 1m data.
   ngOnInit() {
-    this.createChart(this.ticker, this.time);
+    this.createChart(this.ticker, this.time, false);
   }
   ngAfterViewInit(){
   }
 
-  createChart(ticker: string, time: string) : string{ 
-    this.getChart(ticker, time); 
+  createChart(ticker: string, time: string, compare:boolean) : string{ 
+    this.getChart(ticker, time, compare); 
     return time;
   }
 
-  getChart(ticker, time):any{
+  getChart(ticker, time, compare):any{
     let newChart = {data: [], label: ''}
     this.stockService.getChart(ticker, time).subscribe(
       (data: ChartData[])=>{
@@ -86,9 +102,11 @@ export class ChartComponent implements OnInit, AfterViewInit {
         let percentCharge = JSON.parse(JSON.stringify(newChart))
         this.convertPercentChart(percentCharge);
         this.insertChart(newChart);
-      
         this.insertChart(percentCharge);  
-        this.hideChart();
+        if (compare){
+          this.showPercentChartOnly();
+        }
+      
       }
     );
   }
@@ -106,7 +124,8 @@ export class ChartComponent implements OnInit, AfterViewInit {
     let firstValue = chart.data[0];
     let newData = chart.data.map(x => ((x-firstValue)/firstValue)*100);
     chart.data = newData;
-    chart.label = chart.label + 'p';
+    chart.label = chart.label + '%';
+    chart.hidden = true;
     return chart;
   }
 
@@ -119,11 +138,17 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   addCompare(){
     let ticker: string = this.newInput.substring(0, this.newInput.indexOf(':'));
-    this.createChart(ticker, this.time);
+    this.createChart(ticker, this.time, true);
+
   }
 
-  hideChart(){
-    this.Chart.chart.
-    console.log('hide')
+  showPercentChartOnly(){
+    this.chartData.forEach(function(chart){
+      if (chart.label.slice(-1)!='%'){
+        chart.hidden = true;
+      }
+      else chart.hidden = false;
+    })
   }
+
 }
