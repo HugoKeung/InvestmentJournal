@@ -28,16 +28,9 @@ export class BuyPositionComponent implements OnInit {
 
   ngOnInit() {
     
-
-    this.stockService.getAllSupportedTicker().subscribe(
-      (data : FormTicker[])=>{this.allTickers = data;},
-      err=>{console.error(err);},
-      ()=>{
-        this.tickerCheck = this.allTickers.map(function (tickers){
-          return tickers['symbol'] + ':' + tickers['name'];
-        });
         this.positionForm=this.fb.group({
-          ticker:['', [Validators.required, MatchValidator.inArray(this.tickerCheck)]],
+          //validator for ticker will be already done on the autocomplete component
+          ticker:['', [Validators.required]],
           price:['', [Validators.required, Validators.pattern('^[0-9.]*$')]],
           shares:['', [Validators.required, Validators.pattern('^[0-9]*$')]],
           date:['', [Validators.required, DateValidator.notFuture]],
@@ -48,15 +41,9 @@ export class BuyPositionComponent implements OnInit {
           threat:['', Validators.required],
           userId:[localStorage.getItem('user_id')]
         }, {updateOn: 'blur'});
-        this.loaded = true;
-        this.filteredTickers = this.positionForm.get('ticker').valueChanges.pipe(
-          startWith(''), map(value => this._filter(value)));
-          
-      }
-    );
+       
 
 }
-
   saveBuyDetailForm(formValues){
     //formValues.patchValue({date: new Date(formValues.controls.date.value)});
     let fullName: string = this.positionForm.controls['ticker'].value;
@@ -67,33 +54,17 @@ export class BuyPositionComponent implements OnInit {
 
         this.router.navigate(['home']);
       },
-      err => {console.log(err.error.text);},
+      err => {console.log(err.error);},
       () => {}
     )
-  }
-  //slice it here
-   _filter(value: string): FormTicker[]{
-    const filterValue = value.toUpperCase();
-    var choice = this.searchChoice;
-    return this.allTickers.filter(
-      
-      function(ticker){
-        if (choice){
-          return ticker.symbol.toUpperCase().startsWith(filterValue);
-        }
-        else return ticker.name.toUpperCase().includes(filterValue);
-      }
-    
-    );
-  }
-
-  setSearchChoice(value){
-    this.searchChoice = value;
-    this.positionForm.controls['ticker'].setValue('');
   }
 
   textChangeHandler(text: string){
     this.positionForm.controls['ticker'].setValue(text);
+  }
+
+  loadChangeHandler(status: boolean){
+    this.loaded = status;
   }
 
 }

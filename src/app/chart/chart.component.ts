@@ -14,8 +14,9 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() ticker;
   time: string = '1m';
-
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  valid: boolean = false;
+  newInput: string;
+  @ViewChild(BaseChartDirective) private Chart: BaseChartDirective
 //see https://valor-software.com/ng2-charts/ for detail
   //set data point
   public chartData:any[] = [];
@@ -46,15 +47,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
   //set to line grpah
   public chartType:string = 'line';
 
-//  @ViewChild('canvas')
-//  canvas: ElementRef;
-//  chart;
-//  public context: CanvasRenderingContext2D;
-      // events
   public chartClicked(e:any):void {
     
     let index = e.active[0]._index;
-//use the date to get news
+//use the date to get news, to be implemented
     console.log(this.date[index]);
   }
  
@@ -68,8 +64,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(){
   }
-  createChart(ticker: string, time: string) : string{
-    this.getChart(ticker, time);  
+
+  createChart(ticker: string, time: string) : string{ 
+    this.getChart(ticker, time); 
     return time;
   }
 
@@ -80,7 +77,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
          
           let tempPrice = data.map(a => a.close);
           newChart.data = tempPrice;        
-          newChart.label = this.ticker;
+          newChart.label = ticker;
           this.date = data.map(a=> a.date);
          
       },
@@ -91,6 +88,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         this.insertChart(newChart);
       
         this.insertChart(percentCharge);  
+        this.hideChart();
       }
     );
   }
@@ -98,8 +96,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     //first check for duplicates, if there are then overwrite it
     let pos = this.chartData.map(function (e){return e.label}).indexOf(newChart.label);
     
-    if (pos==-1){
-    
+    if (pos==-1){    
       this.chartData.push(newChart);
     }
     else this.chartData[pos]=newChart;
@@ -114,7 +111,19 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   textChangeHandler(value: string){
-    console.log(value);
+    this.newInput = value;
+  }
+  validChangeHandler(status: boolean){
+    this.valid = status;
   }
 
+  addCompare(){
+    let ticker: string = this.newInput.substring(0, this.newInput.indexOf(':'));
+    this.createChart(ticker, this.time);
+  }
+
+  hideChart(){
+    this.Chart.chart.
+    console.log('hide')
+  }
 }

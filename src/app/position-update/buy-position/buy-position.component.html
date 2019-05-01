@@ -2,35 +2,12 @@
 
 <div class="col-md-12">
   <h2>Buy Form</h2>
-  <div *ngIf="loaded">
+
   <div class="col-md-6">
-    <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
-      <app-autocomplete (textChange)="textChangeHandler($event)"></app-autocomplete>
-      <div class="form-group">
-        <label for="ticker">Company:</label>
-                
-            <div id="radioBtn" class="btn-group">
-              <a class="btn btn-primary" [class.active]="searchChoice"(click)="setSearchChoice(true)">Ticker</a>
-              <a class="btn btn-default" [class.active]="!searchChoice"(click)="setSearchChoice(false)">Name</a>
-            </div>
-                 
-        <em *ngIf="positionForm.controls.ticker.invalid && positionForm.controls.ticker.dirty ">Please enter a valid ticker</em>
-        <!--------TODO force user to enter upper ---->
-        <mat-form-field>
-          <div class="col md-6"> <input type="text" matInput formControlName="ticker" [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
-                
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option [value]="ticker.symbol + ':' + ticker.name" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
-                <div class="form-control">{{ticker.symbol}} : {{ticker.name}}</div>
-                
-              </mat-option>
-            </mat-autocomplete>
-    
-        </mat-form-field>
-
-
-      </div>  
-
+      <app-autocomplete (loadChange)="loadChangeHandler($event)" (textChange)="textChangeHandler($event)"></app-autocomplete>
+      <div *ngIf="this.loaded">
+      <form [formGroup]="positionForm" (ngSubmit)=saveBuyDetailForm(positionForm)>
+  
       <div class="form-group">
         <label for="price">Purchase price:</label>
         <em *ngIf="positionForm.controls.price.invalid && positionForm.controls.price.dirty">Please enter a valid price</em>

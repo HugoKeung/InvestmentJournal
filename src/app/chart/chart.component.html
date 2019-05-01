@@ -5,7 +5,8 @@
   <button class="btn-group btn-default" [class.active]="time==='6m'" (click)="time=createChart(this.ticker, '6m')">6m</button>
   <button class="btn-group btn-default" [class.active]="time==='ytd'" (click)="time=createChart(this.ticker,'ytd')">ytd</button>
   <button class="btn-group btn-default" [class.active]="time==='1y'" (click)="time=createChart(this.ticker,'1y')">1y</button>
-  <app-autocomplete (textChange)="textChangeHandler($event)"></app-autocomplete>
+  <app-autocomplete (validChange)="validChangeHandler($event)" (textChange)="textChangeHandler($event)"></app-autocomplete>
+  <button [disabled]="!this.valid"class="btn-group btn-default" (click)="addCompare()">add</button>
 </div>
 <div class="row" >
     <div class="col-md-6">

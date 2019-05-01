@@ -10,7 +10,7 @@
   <!--------TODO force user to enter upper ---->
   <mat-form-field>
     <div class="col md-6"> <input [formControl]="myControl" (ngModelChange)="onChange($event)" type="text" matInput [placeholder]="searchChoice ? 'Ticker Symbol' : 'Company Name'" [matAutocomplete]="auto"></div>
-          
+      <em *ngIf="myControl.invalid">Please choose form list</em>    
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option [value]="ticker.symbol + ':' + ticker.name" *ngFor="let ticker of filteredTickers |async| slice:0:5 " >
           <div>{{ticker.symbol}} : {{ticker.name}}</div>
