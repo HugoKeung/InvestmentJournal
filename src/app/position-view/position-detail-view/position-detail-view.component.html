@@ -9,7 +9,7 @@
 <app-chart class="md-col-8" [ticker] = position.ticker></app-chart>
 
 <div *ngIf="financialLoaded" class="md-col-2">
-  <div>Net Income:  {{financials.netIncome}}</div>
+  <div>Net Income:  {{financials?.netIncome}}</div>
 </div>
 <div *ngIf="earningsLoaded" class="md-col-2">
   <div>Earnings:  {{earnings.actualEPS}}</div>

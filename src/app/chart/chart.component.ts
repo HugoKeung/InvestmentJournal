@@ -13,16 +13,19 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 })
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() ticker;
+  tickers: string[];
   time: string = '1m';
   valid: boolean = false;
   newInput: string;
+  compare: boolean = false;
   @ViewChild(BaseChartDirective) private Chart: BaseChartDirective
 //see https://valor-software.com/ng2-charts/ for detail
   //set data point
   public chartData:any[] = [];
   public chartCounter = 0;
   //set x axis label
-  public date:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public date:Array<any> = [];
+  loaded: boolean = false;
 
   
   public lineChartOptions:any = {
@@ -51,17 +54,25 @@ export class ChartComponent implements OnInit, AfterViewInit {
   constructor(private stockService: StockService, private el: ElementRef) { }
 //TODO add latest price to 1m data.
   ngOnInit() {
-    this.createChart(this.ticker, this.time, false);
+    this.tickers = [this.ticker];
+    this.createChart(this.ticker, this.time);
   }
   ngAfterViewInit(){
   }
 
-  createChart(ticker: string, time: string, compare:boolean) : string{ 
-    this.getChart(ticker, time, compare); 
+  createChart(ticker: string, time: string){ 
+    this.getChart(ticker, time); 
+  
+  }
+
+  createCharts(tickers: string[], time: string): string{
+    tickers.forEach((ticker)=>{
+      this.createChart(ticker, time);
+    })
     return time;
   }
 
-  getChart(ticker, time, compare):any{
+  getChart(ticker, time):any{
     let newChart = {data: [], label: ''}
     this.stockService.getChart(ticker, time).subscribe(
       (data: ChartData[])=>{
@@ -74,11 +85,12 @@ export class ChartComponent implements OnInit, AfterViewInit {
       },
       err=>{console.error(err)},
       ()=>{
-        let percentCharge = JSON.parse(JSON.stringify(newChart))
-        this.convertPercentChart(percentCharge);
+        let percentChart = JSON.parse(JSON.stringify(newChart))
+        this.convertPercentChart(percentChart);
         this.insertChart(newChart);
-        this.insertChart(percentCharge);  
-        if (compare){
+        this.insertChart(percentChart);  
+        this.loaded = true;
+        if (this.compare){
           this.showPercentChartOnly();
         }
       
@@ -87,12 +99,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
   insertChart(newChart){
     //first check for duplicates, if there are then overwrite it
-    let pos = this.chartData.map(function (e){return e.label}).indexOf(newChart.label);
+      let pos = this.chartData.map(function (e){return e.label}).indexOf(newChart.label);
     
     if (pos==-1){    
       this.chartData.push(newChart);
+      //this.tickers.push(newChart.label);
     }
-    else this.chartData[pos]=newChart;
+    else {
+      this.chartData[pos]=newChart;
+    }
   }
 
   convertPercentChart(chart): any{
@@ -113,7 +128,11 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   addCompare(){
     let ticker: string = this.newInput.substring(0, this.newInput.indexOf(':'));
-    this.createChart(ticker, this.time, true);
+    if (this.tickers.indexOf(ticker)==-1){
+      this.tickers.push(ticker);
+    }
+    this.compare = true;
+    this.createChart(ticker, this.time);
 
   }
 
@@ -124,6 +143,13 @@ export class ChartComponent implements OnInit, AfterViewInit {
       }
       else chart.hidden = false;
     })
+  }
+
+  reset(){
+    this.tickers = [];
+    this.chartData=[];
+    this.createChart(this.ticker, this.time);
+    this.compare = false;
   }
 
 }

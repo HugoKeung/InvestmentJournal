@@ -1,16 +1,17 @@
 <div class="btn-group">
-  <button class="btn-group btn-default" [class.active]="time==='1d'" (click)="time=createChart(this.ticker,'1d')">1d</button>
-  <button class="btn-group btn-default" [class.active]="time==='1m'" (click)="time=createChart(this.ticker,'1m')">1m</button>
-  <button class="btn-group btn-default" [class.active]="time==='3m'" (click)="time=createChart(this.ticker,'3m')">3m</button>
-  <button class="btn-group btn-default" [class.active]="time==='6m'" (click)="time=createChart(this.ticker, '6m')">6m</button>
-  <button class="btn-group btn-default" [class.active]="time==='ytd'" (click)="time=createChart(this.ticker,'ytd')">ytd</button>
-  <button class="btn-group btn-default" [class.active]="time==='1y'" (click)="time=createChart(this.ticker,'1y')">1y</button>
+  <button class="btn-group btn-default" [class.active]="time==='1d'" (click)="time=createCharts(this.tickers,'1d')">1d</button>
+  <button class="btn-group btn-default" [class.active]="time==='1m'" (click)="time=createCharts(this.tickers,'1m')">1m</button>
+  <button class="btn-group btn-default" [class.active]="time==='3m'" (click)="time=createCharts(this.tickers,'3m')">3m</button>
+  <button class="btn-group btn-default" [class.active]="time==='6m'" (click)="time=createCharts(this.tickers, '6m')">6m</button>
+  <button class="btn-group btn-default" [class.active]="time==='ytd'" (click)="time=createCharts(this.tickers,'ytd')">ytd</button>
+  <button class="btn-group btn-default" [class.active]="time==='1y'" (click)="time=createCharts(this.tickers,'1y')">1y</button>
   <app-autocomplete (validChange)="validChangeHandler($event)" (textChange)="textChangeHandler($event)"></app-autocomplete>
   <button [disabled]="!this.valid"class="btn-group btn-default" (click)="addCompare()">add</button>
+  <button class="btn-group btn-default" (click)="reset()">reset</button>
 </div>
 <div class="row" >
     <div class="col-md-6">
-      <div style="display: block;">
+      <div *ngIf="loaded" style="display: block;">
       <canvas baseChart width="200" height="75"
                   [datasets]="chartData"
                   [labels]="date"

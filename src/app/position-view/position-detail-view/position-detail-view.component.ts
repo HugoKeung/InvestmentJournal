@@ -33,11 +33,10 @@ export class PositionDetailViewComponent implements OnInit {
     this.stockService.getFinancial(this.position.ticker).subscribe(
       (data: any)=>{
         //only show most recent financial
- 
         this.financials = data.financials[0];
-          
+          console.log('FINANCIALS' + this.financials)
       },
-      err =>{ console.error(err)},
+      err =>{ console.log(err)},
       ()=>{
 
         this.financialLoaded = true;
@@ -47,6 +46,7 @@ export class PositionDetailViewComponent implements OnInit {
       (data: any)=>{
         //only show most recent financial
         this.earnings = data.earnings[0];
+        console.log(this.earnings)
       },
       err =>{ console.error(err)},
       ()=>{
